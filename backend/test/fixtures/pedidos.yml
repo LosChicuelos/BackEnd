@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: MyString
+  idproducto: MyString
+  idusuariocomp: MyString
+  idusuariovend: MyString
+  fecha: 2018-03-15
+  cantidad: 1
+  monto: 9.99
+
+two:
+  id: MyString
+  idproducto: MyString
+  idusuariocomp: MyString
+  idusuariovend: MyString
+  fecha: 2018-03-15
+  cantidad: 1
+  monto: 9.99

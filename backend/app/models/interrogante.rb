@@ -1,0 +1,2 @@
+class Interrogante < ApplicationRecord
+end
