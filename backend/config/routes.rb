@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  resources :scores
+  resources :alliances
+  resources :messages
+  resources :sales
+  resources :questions
+  resources :photos
+  resources :articles
+  resources :users
+  resources :classifications
   get 'clasificaciones/new'
 
   get 'clasificaciones/create'

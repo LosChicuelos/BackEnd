@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  idsender: MyString
+  idreceiver: MyString
+  topic: MyString
+  content: MyText
+  date: 2018-03-25
+  user: one
+
+two:
+  id: 
+  idsender: MyString
+  idreceiver: MyString
+  topic: MyString
+  content: MyText
+  date: 2018-03-25
+  user: two
