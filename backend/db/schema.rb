@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328233602) do
+ActiveRecord::Schema.define(version: 20180329212228) do
 
   create_table "alliances", force: :cascade do |t|
     t.text "commentary"
@@ -103,13 +103,13 @@ ActiveRecord::Schema.define(version: 20180328233602) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "type"
+    t.string "typeuser"
     t.string "iddocument"
     t.string "typedocument"
     t.string "email"
     t.string "phone"
-    t.string "latitude"
-    t.string "langitude"
+    t.decimal "latitude"
+    t.decimal "langitude"
     t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
