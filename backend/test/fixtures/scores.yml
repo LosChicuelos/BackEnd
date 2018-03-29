@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  commentary: MyText
+  score: 1
+  sale: one
+  qualified: one
+  qualifier: one
+
+two:
+  commentary: MyText
+  score: 1
+  sale: two
+  qualified: two
+  qualifier: two

@@ -1,0 +1,37 @@
+<%= form_with(model: alliance, local: true) do |form| %>
+  <% if alliance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(alliance.errors.count, "error") %> prohibited this alliance from being saved:</h2>
+
+      <ul>
+      <% alliance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :commentary %>
+    <%= form.text_area :commentary, id: :alliance_commentary %>
+  </div>
+
+  <div class="field">
+    <%= form.label :confirm %>
+    <%= form.text_field :confirm, id: :alliance_confirm %>
+  </div>
+
+  <div class="field">
+    <%= form.label :approval_id %>
+    <%= form.text_field :approval_id, id: :alliance_approval_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :applicant_id %>
+    <%= form.text_field :applicant_id, id: :alliance_applicant_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

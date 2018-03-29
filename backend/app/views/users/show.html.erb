@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @user.type %>
+</p>
+
+<p>
+  <strong>Iddocument:</strong>
+  <%= @user.iddocument %>
+</p>
+
+<p>
+  <strong>Typedocument:</strong>
+  <%= @user.typedocument %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @user.phone %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @user.latitude %>
+</p>
+
+<p>
+  <strong>Langitude:</strong>
+  <%= @user.langitude %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @user.password %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

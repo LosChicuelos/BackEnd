@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Commentary:</strong>
+  <%= @alliance.commentary %>
+</p>
+
+<p>
+  <strong>Confirm:</strong>
+  <%= @alliance.confirm %>
+</p>
+
+<p>
+  <strong>Approval:</strong>
+  <%= @alliance.approval %>
+</p>
+
+<p>
+  <strong>Applicant:</strong>
+  <%= @alliance.applicant %>
+</p>
+
+<%= link_to 'Edit', edit_alliance_path(@alliance) %> |
+<%= link_to 'Back', alliances_path %>

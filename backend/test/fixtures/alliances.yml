@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  commentary: MyText
+  confirm: MyString
+  approval: one
+  applicant: one
+
+two:
+  commentary: MyText
+  confirm: MyString
+  approval: two
+  applicant: two
