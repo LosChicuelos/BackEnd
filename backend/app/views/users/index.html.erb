@@ -5,9 +5,10 @@
 <table>
   <thead>
     <tr>
+      <th>Id</th>
       <th>Name</th>
       <th>LastName</th>
-      <th>TypeUser</th>
+      <th>TypeUser</th>      
       <th>Iddocument</th>
       <th>Typedocument</th>
       <th>Email</th>
@@ -22,6 +23,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= user.id %></td>
         <td><%= user.name %></td>
         <td><%= user.lastname %></td>
         <td><%= user.typeuser %></td>
@@ -39,7 +41,7 @@
     <% end %>
   </tbody>
 </table>
-
+<center><%= will_paginate @users %></center>
 <br>
 
 <%= link_to 'New User', new_user_path %>
