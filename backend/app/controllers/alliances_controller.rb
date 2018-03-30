@@ -4,7 +4,7 @@ class AlliancesController < ApplicationController
   # GET /alliances
   # GET /alliances.json
   def index
-    @alliances = Alliance.all
+    @alliances = Alliance.paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /alliances/1
