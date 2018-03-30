@@ -1,6 +1,8 @@
 class User < ApplicationRecord
     has_many :articles
     has_many :questions
+    has_many :approvals, :class_name => "Alliance", :foreign_key => "approval_id"
+    has_many :applicants, :class_name => "Alliance", :foreign_key => "applicant_id"
 
     VALID_EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
