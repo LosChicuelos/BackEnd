@@ -1,4 +1,16 @@
 class User < ApplicationRecord
+    has_many :alliance_approval, :class_name => 'Alliance', :foreign_key => 'approval_id'
+    has_many :alliance_applicant, :class_name => 'Alliance', :foreign_key => 'applicant_id'
+
+    has_many :sent_private_messages, :class_name => 'Message', :foreign_key => 'sender_id'
+    has_many :received_private_messages, :class_name => 'Message', :foreign_key => 'receiver_id'
+
+    has_many :sales_seler, :class_name => 'Sales', :foreign_key => 'seller_id'
+    has_many :sales_buyer, :class_name => 'Sales', :foreign_key => 'buyer_id'
+
+    has_many :score_qualified, :class_name => 'Score', :foreign_key => 'qualified_id'
+    has_many :score_qualifier, :class_name => 'Score', :foreign_key => 'qualifier_id'
+
     has_many :articles
     has_many :questions
 

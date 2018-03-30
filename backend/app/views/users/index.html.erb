@@ -5,7 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Type</th>
+      <th>Name</th>
+      <th>LastName</th>
+      <th>TypeUser</th>
       <th>Iddocument</th>
       <th>Typedocument</th>
       <th>Email</th>
@@ -20,7 +22,9 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.type %></td>
+        <td><%= user.name %></td>
+        <td><%= user.lastname %></td>
+        <td><%= user.typeuser %></td>
         <td><%= user.iddocument %></td>
         <td><%= user.typedocument %></td>
         <td><%= user.email %></td>
