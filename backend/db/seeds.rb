@@ -9,11 +9,7 @@
 require 'faker'
 include Faker
 
-#10.times do 
-#    Classification.create(
-#        name: Faker::Name.name
-#    )
-#end
+### 1 ###
 User.destroy_all
 
 5.times do 
@@ -61,6 +57,7 @@ end
     )
 end
 
+### 2 ###
 Classification.destroy_all
 
 3.times do 
@@ -69,6 +66,7 @@ Classification.destroy_all
     )
 end
 
+### 3 ###
 Article.destroy_all
 
 10.times do 
@@ -82,8 +80,70 @@ Article.destroy_all
     )
 end
 
+### 4 ###
+Question.destroy_all
 
+10.times do 
+    Question.create(
+        question: Faker::Lorem.paragraph,
+        answer:  Faker::Lorem.paragraph,
+        date: Time.now,
+        user_id: Faker::Number.between(1, 10),
+        article_id: Faker::Number.between(1, 10)
+    )
+end
 
+### 5 ###
+Sale.destroy_all
+
+5.times do 
+    Sale.create(
+        date: Time.now,
+        quantity: Faker::Number.between(1, 10),
+        amount: Faker::Number.between(10000, 100000),
+        seller_id: Faker::Number.between(1, 10),
+        buyer_id: Faker::Number.between(1, 10),
+        article_id: Faker::Number.between(1, 10)
+    )
+end
+
+### 6 ###
+Score.destroy_all
+
+5.times do 
+    Score.create(
+        commentary: Faker::Lorem.paragraph,
+        score: Faker::Number.between(1, 10),
+        sale_id: Faker::Number.between(1, 10),
+        qualified_id: Faker::Number.between(1, 10),
+        qualifier_id: Faker::Number.between(1, 10)
+    )
+end
+
+### 7 ###
+#Message.destroy_all
+#
+#5.times do 
+#    Message.create(
+#        topic: "Mensaje urgente",
+#        content: Faker::Lorem.paragraph,
+#        date: Time.now,
+#        sender_id: Faker::Number.between(1, 10),
+#        receiver_id: Faker::Number.between(1, 10)
+#    )
+#end
+
+### 8 ###
+#Photo.destroy_all
+#
+#5.times do 
+#    Photo.create(
+#        photo: "??????",
+#        article_id: Faker::Number.between(1, 10)
+#    )
+#end
+
+### 9 ###
 #Alliance.destroy_all
 #
 #10.times do 
