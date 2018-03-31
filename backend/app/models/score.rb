@@ -20,4 +20,5 @@ class Score < ApplicationRecord
   validates :commentary, presence: true, length: { maximum: 500 }
   validates :score, presence: true, numericality: { only_integer: true }, length: { maximum: 1 }
   
+  scope :goodscore, -> { where("score > ?",3)} 
 end

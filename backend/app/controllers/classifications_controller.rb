@@ -3,7 +3,7 @@ class ClassificationsController < ApplicationController
 
   # GET /classifications
   def index
-    @classifications = Classification.all
+    @classifications = Classification.paginate(:page => params[:page], :per_page => 5)
 
     render json: @classifications
   end

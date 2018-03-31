@@ -3,7 +3,7 @@ class SalesController < ApplicationController
 
   # GET /sales
   def index
-    @sales = Sale.all
+    @sales = Sale.paginate(:page => params[:page], :per_page => 5)
 
     render json: @sales
   end
