@@ -6,43 +6,33 @@ class ClassificationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get classifications_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_classification_url
+    get classifications_url, as: :json
     assert_response :success
   end
 
   test "should create classification" do
     assert_difference('Classification.count') do
-      post classifications_url, params: { classification: { name: @classification.name } }
+      post classifications_url, params: { classification: {  } }, as: :json
     end
 
-    assert_redirected_to classification_url(Classification.last)
+    assert_response 201
   end
 
   test "should show classification" do
-    get classification_url(@classification)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_classification_url(@classification)
+    get classification_url(@classification), as: :json
     assert_response :success
   end
 
   test "should update classification" do
-    patch classification_url(@classification), params: { classification: { name: @classification.name } }
-    assert_redirected_to classification_url(@classification)
+    patch classification_url(@classification), params: { classification: {  } }, as: :json
+    assert_response 200
   end
 
   test "should destroy classification" do
     assert_difference('Classification.count', -1) do
-      delete classification_url(@classification)
+      delete classification_url(@classification), as: :json
     end
 
-    assert_redirected_to classifications_url
+    assert_response 204
   end
 end

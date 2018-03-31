@@ -6,43 +6,33 @@ class PhotosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get photos_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_photo_url
+    get photos_url, as: :json
     assert_response :success
   end
 
   test "should create photo" do
     assert_difference('Photo.count') do
-      post photos_url, params: { photo: { article_id: @photo.article_id, date: @photo.date, photo: @photo.photo } }
+      post photos_url, params: { photo: {  } }, as: :json
     end
 
-    assert_redirected_to photo_url(Photo.last)
+    assert_response 201
   end
 
   test "should show photo" do
-    get photo_url(@photo)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_photo_url(@photo)
+    get photo_url(@photo), as: :json
     assert_response :success
   end
 
   test "should update photo" do
-    patch photo_url(@photo), params: { photo: { article_id: @photo.article_id, date: @photo.date, photo: @photo.photo } }
-    assert_redirected_to photo_url(@photo)
+    patch photo_url(@photo), params: { photo: {  } }, as: :json
+    assert_response 200
   end
 
   test "should destroy photo" do
     assert_difference('Photo.count', -1) do
-      delete photo_url(@photo)
+      delete photo_url(@photo), as: :json
     end
 
-    assert_redirected_to photos_url
+    assert_response 204
   end
 end

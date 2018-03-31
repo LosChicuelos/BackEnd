@@ -6,43 +6,33 @@ class SalesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get sales_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_sale_url
+    get sales_url, as: :json
     assert_response :success
   end
 
   test "should create sale" do
     assert_difference('Sale.count') do
-      post sales_url, params: { sale: { amount: @sale.amount, article_id: @sale.article_id, buyer_id: @sale.buyer_id, date: @sale.date, quantity: @sale.quantity, seller_id: @sale.seller_id } }
+      post sales_url, params: { sale: {  } }, as: :json
     end
 
-    assert_redirected_to sale_url(Sale.last)
+    assert_response 201
   end
 
   test "should show sale" do
-    get sale_url(@sale)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_sale_url(@sale)
+    get sale_url(@sale), as: :json
     assert_response :success
   end
 
   test "should update sale" do
-    patch sale_url(@sale), params: { sale: { amount: @sale.amount, article_id: @sale.article_id, buyer_id: @sale.buyer_id, date: @sale.date, quantity: @sale.quantity, seller_id: @sale.seller_id } }
-    assert_redirected_to sale_url(@sale)
+    patch sale_url(@sale), params: { sale: {  } }, as: :json
+    assert_response 200
   end
 
   test "should destroy sale" do
     assert_difference('Sale.count', -1) do
-      delete sale_url(@sale)
+      delete sale_url(@sale), as: :json
     end
 
-    assert_redirected_to sales_url
+    assert_response 204
   end
 end

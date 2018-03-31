@@ -27,6 +27,7 @@ gem 'faker', git: 'https://github.com/stympy/faker'
 ## Gemfile for Rails 3+, Sinatra, and Merb
 gem 'will_paginate', '~> 3.1.0'
 gem 'annotate', git: 'https://github.com/ctran/annotate_models.git'
+gem 'active_model_serializers'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,64 +1,41 @@
 class AlliancesController < ApplicationController
-  before_action :set_alliance, only: [:show, :edit, :update, :destroy]
+  before_action :set_alliance, only: [:show, :update, :destroy]
 
   # GET /alliances
-  # GET /alliances.json
   def index
-    @alliances = Alliance.paginate(:page => params[:page], :per_page => 5)
+    @alliances = Alliance.all
+
+    render json: @alliances
   end
 
   # GET /alliances/1
-  # GET /alliances/1.json
   def show
-  end
-
-  # GET /alliances/new
-  def new
-    @alliance = Alliance.new
-  end
-
-  # GET /alliances/1/edit
-  def edit
+    render json: @alliance
   end
 
   # POST /alliances
-  # POST /alliances.json
   def create
     @alliance = Alliance.new(alliance_params)
 
-    respond_to do |format|
       if @alliance.save
-        format.html { redirect_to @alliance, notice: 'Alliance was successfully created.' }
-        format.json { render :show, status: :created, location: @alliance }
+      render json: @alliance, status: :created, location: @alliance
       else
-        format.html { render :new }
-        format.json { render json: @alliance.errors, status: :unprocessable_entity }
-      end
+      render json: @alliance.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /alliances/1
-  # PATCH/PUT /alliances/1.json
   def update
-    respond_to do |format|
       if @alliance.update(alliance_params)
-        format.html { redirect_to @alliance, notice: 'Alliance was successfully updated.' }
-        format.json { render :show, status: :ok, location: @alliance }
+      render json: @alliance
       else
-        format.html { render :edit }
-        format.json { render json: @alliance.errors, status: :unprocessable_entity }
-      end
+      render json: @alliance.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /alliances/1
-  # DELETE /alliances/1.json
   def destroy
     @alliance.destroy
-    respond_to do |format|
-      format.html { redirect_to alliances_url, notice: 'Alliance was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private
@@ -67,7 +44,7 @@ class AlliancesController < ApplicationController
       @alliance = Alliance.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Only allow a trusted parameter "white list" through.
     def alliance_params
       params.require(:alliance).permit(:commentary, :confirm, :approval_id, :applicant_id)
     end

@@ -6,43 +6,33 @@ class ScoresControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get scores_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_score_url
+    get scores_url, as: :json
     assert_response :success
   end
 
   test "should create score" do
     assert_difference('Score.count') do
-      post scores_url, params: { score: { commentary: @score.commentary, qualified_id: @score.qualified_id, qualifier_id: @score.qualifier_id, sale_id: @score.sale_id, score: @score.score } }
+      post scores_url, params: { score: {  } }, as: :json
     end
 
-    assert_redirected_to score_url(Score.last)
+    assert_response 201
   end
 
   test "should show score" do
-    get score_url(@score)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_score_url(@score)
+    get score_url(@score), as: :json
     assert_response :success
   end
 
   test "should update score" do
-    patch score_url(@score), params: { score: { commentary: @score.commentary, qualified_id: @score.qualified_id, qualifier_id: @score.qualifier_id, sale_id: @score.sale_id, score: @score.score } }
-    assert_redirected_to score_url(@score)
+    patch score_url(@score), params: { score: {  } }, as: :json
+    assert_response 200
   end
 
   test "should destroy score" do
     assert_difference('Score.count', -1) do
-      delete score_url(@score)
+      delete score_url(@score), as: :json
     end
 
-    assert_redirected_to scores_url
+    assert_response 204
   end
 end

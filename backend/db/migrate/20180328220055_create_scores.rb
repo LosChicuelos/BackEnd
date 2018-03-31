@@ -4,8 +4,8 @@ class CreateScores < ActiveRecord::Migration[5.1]
       t.text :commentary
       t.integer :score
       t.references :sale, foreign_key: true
-      t.references :qualified, foreign_key: true
-      t.references :qualifier, foreign_key: true
+      t.references :qualified
+      t.references :qualifier
 
       t.timestamps
     end

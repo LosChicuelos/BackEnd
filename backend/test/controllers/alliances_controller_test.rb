@@ -6,43 +6,33 @@ class AlliancesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get alliances_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_alliance_url
+    get alliances_url, as: :json
     assert_response :success
   end
 
   test "should create alliance" do
     assert_difference('Alliance.count') do
-      post alliances_url, params: { alliance: { applicant_id: @alliance.applicant_id, approval_id: @alliance.approval_id, commentary: @alliance.commentary, confirm: @alliance.confirm } }
+      post alliances_url, params: { alliance: {  } }, as: :json
     end
 
-    assert_redirected_to alliance_url(Alliance.last)
+    assert_response 201
   end
 
   test "should show alliance" do
-    get alliance_url(@alliance)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_alliance_url(@alliance)
+    get alliance_url(@alliance), as: :json
     assert_response :success
   end
 
   test "should update alliance" do
-    patch alliance_url(@alliance), params: { alliance: { applicant_id: @alliance.applicant_id, approval_id: @alliance.approval_id, commentary: @alliance.commentary, confirm: @alliance.confirm } }
-    assert_redirected_to alliance_url(@alliance)
+    patch alliance_url(@alliance), params: { alliance: {  } }, as: :json
+    assert_response 200
   end
 
   test "should destroy alliance" do
     assert_difference('Alliance.count', -1) do
-      delete alliance_url(@alliance)
+      delete alliance_url(@alliance), as: :json
     end
 
-    assert_redirected_to alliances_url
+    assert_response 204
   end
 end

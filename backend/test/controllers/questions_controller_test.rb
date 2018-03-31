@@ -6,43 +6,33 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get questions_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_question_url
+    get questions_url, as: :json
     assert_response :success
   end
 
   test "should create question" do
     assert_difference('Question.count') do
-      post questions_url, params: { question: { answer: @question.answer, article_id: @question.article_id, date: @question.date, question: @question.question, user_id: @question.user_id } }
+      post questions_url, params: { question: {  } }, as: :json
     end
 
-    assert_redirected_to question_url(Question.last)
+    assert_response 201
   end
 
   test "should show question" do
-    get question_url(@question)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_question_url(@question)
+    get question_url(@question), as: :json
     assert_response :success
   end
 
   test "should update question" do
-    patch question_url(@question), params: { question: { answer: @question.answer, article_id: @question.article_id, date: @question.date, question: @question.question, user_id: @question.user_id } }
-    assert_redirected_to question_url(@question)
+    patch question_url(@question), params: { question: {  } }, as: :json
+    assert_response 200
   end
 
   test "should destroy question" do
     assert_difference('Question.count', -1) do
-      delete question_url(@question)
+      delete question_url(@question), as: :json
     end
 
-    assert_redirected_to questions_url
+    assert_response 204
   end
 end
