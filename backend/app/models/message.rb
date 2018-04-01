@@ -19,4 +19,8 @@ class Message < ApplicationRecord
   validates :topic, presence: true, length: { minimum: 5, maximum: 50 }
   validates :content, presence: true, length: { minimum: 10, maximum: 500 }
   validates :date, presence: true
+  
+  def self.belongsalliance(userid1,userid2)
+    joins(:user).where("classifications.name = ?",classificationname)
+  end
 end

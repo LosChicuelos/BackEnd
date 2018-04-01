@@ -143,6 +143,7 @@ end
     )
 end
 
+=begin
 puts "User " + User.count.to_s
 puts "Classification " + Classification.count.to_s
 puts "Article " + Article.count.to_s
@@ -153,7 +154,7 @@ puts "Sale " + Sale.count.to_s
 puts "Score " + Score.count.to_s
 puts "Photo " + Photo.count.to_s
 
-=begin
+
 5.times do 
     Photo.create(
         photo: "??????",

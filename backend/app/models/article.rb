@@ -25,5 +25,9 @@ class Article < ApplicationRecord
   validates :inventory, presence: true, numericality: true
   validates :price, presence: true, numericality: true
   
-#  scope :highprice, -> { where("price > ?",50000)}
+  scope :highprice, -> { where("price > ?",50000)}
+  
+  def self.belongsclassification(classificationname)
+    joins(:classification).where("classifications.name = ?",classificationname)
+  end
 end
