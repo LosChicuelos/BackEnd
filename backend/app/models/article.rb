@@ -14,7 +14,7 @@
 #
 
 class Article < ApplicationRecord
-#  belongs_to :user
+  belongs_to :user
   belongs_to :classification
   has_many :photos
   has_many :questions
@@ -26,6 +26,7 @@ class Article < ApplicationRecord
   validates :price, presence: true, numericality: true
   
   scope :highprice, -> { where("price > ?",50000)}
+  scope :belongsuser, ->(param){ joins(:user).where("user.name = ?",param)}
   
   def self.belongsclassification(classificationname)
     joins(:classification).where("classifications.name = ?",classificationname)

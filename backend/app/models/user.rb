@@ -46,4 +46,20 @@ class User < ApplicationRecord
     validates :langitude, presence: true, length: {minimum: 5, maximum: 30}
     validates :password, presence: true, length: {minimum: 8, maximum: 20}
     
+    scope :fivebestsellercantity, ->{
+        joins("INNER JOIN sales ON sales.seller_id   = users.id").
+        group('users.id').
+        order('count_id  desc').
+        count('id').
+        take(5)
+    }
+    
+    scope :fivebestsellervalue, ->{
+        select("sum(amount) as totalamount, users.* ").
+        joins("INNER JOIN sales ON sales.seller_id   = users.id").
+        group('users.id').
+        order('totalamount  desc').
+        take(5)
+    }
+    
 end

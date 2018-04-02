@@ -46,6 +46,7 @@ User.destroy_all
 Classification.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="classifications"')
 Article.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="articles"')
 Sale.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="sales"')
+User.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="users"')
 
 User.create(
     name: "Cristian Felipe", 

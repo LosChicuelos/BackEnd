@@ -20,7 +20,14 @@ class Message < ApplicationRecord
   validates :content, presence: true, length: { minimum: 10, maximum: 500 }
   validates :date, presence: true
   
-  def self.belongsalliance(userid1,userid2)
-    joins(:user).where("classifications.name = ?",classificationname)
+  scope :countexitlastweek, -> {where('created_at >= ?', 1.week.ago).count} 
+  scope :lastweek, -> {where('created_at >= ?', 1.week.ago)} 
+  
+  def self.belongsalliance
+    joins("
+    INNER JOIN users  userapproval  ON messages.sender_id   = userapproval.id 
+    INNER JOIN users  userapplicant ON messages.receiver_id = userapplicant.id
+    INNER JOIN alliances ON alliances.applicant_id = userapplicant.id AND alliances.approval_id = userapproval.id"
+    )
   end
 end
