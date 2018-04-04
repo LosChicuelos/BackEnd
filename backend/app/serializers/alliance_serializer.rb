@@ -1,3 +1,3 @@
 class AllianceSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :commentary, :approval_id, :applicant_id, :confirm
 end
