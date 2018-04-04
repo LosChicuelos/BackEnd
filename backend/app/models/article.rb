@@ -24,11 +24,39 @@ class Article < ApplicationRecord
   validates :description, presence: true, length: { minimum: 5, maximum: 500 }
   validates :inventory, presence: true, numericality: true
   validates :price, presence: true, numericality: true
+
+  #///////// Querries /////////
+  #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
   
+  #Este query nos devuelve los productos que tienen un precio igual o mayor que el parámetro de entrada.
+  scope :higher_price_than, ->(entry_price) { where("price => ?", entry_price)}
+  #Este query nos devuelve los productos que tienen un precio igual o menor que el parámetro de entrada.
+  scope :lower_price_than, ->(entry_price) { where("price =< ?", entry_price)}
+  #Para obtener artículos entre un rango de precios, solo se necesita anidar los 2 queries anteriores.
+
+  #Articulos por ubicacion
+  #query en proceso
+
+  #Este query nos devuelve todos los artículos de una clasificación dada.
+  scope :classificationname, ->(classificationname) { 
+    joins(:classification).where("classifications.name = ?", classificationname)}
+  
+  #buscar por nombre o parte del monbre
+  scope :in_the_name, ->(string) { where("name LIKE :query", query: "%#{string}%")}
+
+  #Este query nos devuelve los artículos creados después de una fecha.
+  scope :created_before, ->(time) { where("created_at <= ?", time)}
+  #Este query nos devuelve los artículos creados antes de una fecha.
+  scope :created_after, ->(time) { where("created_at > ?", time)}
+  #Para obtener los artículos entre un rango de fechas, solo se necesita anidar los 2 queries anteriores.
+
+
   scope :highprice, -> { where("price > ?",50000)}
   scope :belongsuser, ->(param){ joins(:user).where("user.name = ?",param)}
   
-  def self.belongsclassification(classificationname)
+=begin
+  def self. (classificationname)
     joins(:classification).where("classifications.name = ?",classificationname)
   end
+=end
 end
