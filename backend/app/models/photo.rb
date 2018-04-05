@@ -15,4 +15,11 @@ class Photo < ApplicationRecord
 
   validates :date, presence: true
   validates :photo, presence: true
+
+  #///////// Querries /////////
+  #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
+  
+  #Este query nos devuelve todas las fotos de un producto.
+  scope :photos_by_article, ->(id_param) { where("article_id = ?", id_param)}
+
 end
