@@ -23,4 +23,13 @@ class Sale < ApplicationRecord
   validates :quantity, presence: true, numericality:  true 
   validates :amount, presence: true, numericality: true
   
+  #///////// Querries /////////
+  #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
+
+  #Este query nos devuelve las compras que a realizado un usurario.
+  scope :purchases_per_user, ->(id_param) { where("buyer_id = ?", id_param)}
+
+  #Este query nos devuelve las ventas que a realizado un usurario.
+  scope :sales_per_user, ->(id_param) { where("seller_id = ?", id_param)}
+
 end
