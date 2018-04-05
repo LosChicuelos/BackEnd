@@ -41,7 +41,7 @@ class Article < ApplicationRecord
   scope :classificationname, ->(classificationname) { 
     joins(:classification).where("classifications.name = ?", classificationname)}
   
-  ##Este query busca un articulo por nombre o parte del monbre.
+  #buscar por nombre o parte del monbre
   scope :in_the_name, ->(string) { where("name LIKE :query", query: "%#{string}%")}
 
   #Este query nos devuelve los artículos creados después de una fecha.
