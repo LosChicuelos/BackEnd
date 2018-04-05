@@ -21,11 +21,11 @@ class Alliance < ApplicationRecord
   #///////// Querries /////////
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
 
-  #Este query nos devuelve cuantas alianzas fueron confirmadas.
-  #query en proceso
+  #Este query nos devuelve las alianzas que fueron confirmadas.
+  scope :alliance_positve, -> { where("confirm = ?", "SI")}
 
-  #Este query nos devuelve cuantas alianzas no fueron confirmadas.
-  #query en proceso
+  #Este query nos devuelve las alianzas que no fueron confirmadas.
+  scope :alliance_negative, -> { where("confirm = ?", "NO")}
 
   #Este query nos devuelve las alianzas creadas después de una fecha.
   scope :created_before, ->(time) { where("created_at <= ?", time)}
