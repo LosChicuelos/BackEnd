@@ -20,6 +20,12 @@ class Message < ApplicationRecord
   validates :content, presence: true, length: { minimum: 10, maximum: 500 }
   validates :date, presence: true
   
+  #///////// Querries /////////
+  #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
+
+  #Este query nos devuelve los mensajes que a enviado un usurario.
+  #Este query nos devuelve los mensajes que a recibido un usurario.
+
   scope :countexitlastweek, -> {where('created_at >= ?', 1.week.ago).count} 
   scope :lastweek, -> {where('created_at >= ?', 1.week.ago)} 
   
