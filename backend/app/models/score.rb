@@ -19,7 +19,10 @@ class Score < ApplicationRecord
 
   validates :commentary, presence: true, length: { maximum: 500 }
   validates :score, presence: true, numericality: { only_integer: true }, length: { maximum: 1 }
-  
+
+  #///////// Querries /////////
+  #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
+ 
   scope :counthigherthan, -> (param) { where("score > ?",param).count} 
   scope :higherthan, -> (param) { where("score > ?",param)} 
   

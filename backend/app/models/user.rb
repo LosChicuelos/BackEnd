@@ -45,6 +45,10 @@ class User < ApplicationRecord
     validates :latitude, presence: true, length: {minimum: 5, maximum: 30}
     validates :langitude, presence: true, length: {minimum: 5, maximum: 30}
     validates :password, presence: true, length: {minimum: 8, maximum: 20}
+
+    #///////// Querries /////////
+    #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
+
     
     scope :fivebestsellercantity, ->{
         joins("INNER JOIN sales ON sales.seller_id   = users.id").
