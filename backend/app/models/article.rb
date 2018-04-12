@@ -34,14 +34,16 @@ class Article < ApplicationRecord
   scope :lower_price_than, ->(entry_price) { where("price =< ?", entry_price)}
   #Para obtener artículos entre un rango de precios, solo se necesita anidar los 2 queries anteriores.
 
-  #Articulos por ubicacion
-  #query en proceso
+  #Este query nos devuelve todos los artículos entre un rango de coordenadas.
+  scope :location, ->(latitude_max, latitude_min,langitude_max, langitude_min) { 
+    joins(:user).where("users.latitude":latitude_max..latitude_min)
+    .where("users.langitude":langitude_max..langitude_min)}
 
   #Este query nos devuelve todos los artículos de una clasificación dada.
   scope :classificationname, ->(classificationname) { 
     joins(:classification).where("classifications.name = ?", classificationname)}
   
-  ##Este query busca un articulo por nombre o parte del monbre.
+  #Este query busca un articulo por nombre o parte del monbre.
   scope :in_the_name, ->(string) { where("name LIKE :query", query: "%#{string}%")}
 
   #Este query nos devuelve los artículos creados después de una fecha.
@@ -50,13 +52,6 @@ class Article < ApplicationRecord
   scope :created_after, ->(time) { where("created_at > ?", time)}
   #Para obtener los artículos entre un rango de fechas, solo se necesita anidar los 2 queries anteriores.
 
-
-  scope :highprice, -> { where("price > ?",50000)}
   scope :belongsuser, ->(param){ joins(:user).where("user.name = ?",param)}
   
-=begin
-  def self. (classificationname)
-    joins(:classification).where("classifications.name = ?",classificationname)
-  end
-=end
 end
