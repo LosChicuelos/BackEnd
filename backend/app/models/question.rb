@@ -18,4 +18,10 @@ class Question < ApplicationRecord
   
   validates :date, presence: true
   validates :question, presence: true, length: { minimum: 5, maximum: 200 }
+
+  #///////// Querries /////////
+  #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
+
+  #Este query nos devuelve todas las preguntas realizadas por un usuario especifico.
+  scope :belongsuser, ->(param){ joins("INNER JOIN users ON users.id = questions.user_id").where("users.id = ?",param)}
 end

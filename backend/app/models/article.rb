@@ -34,7 +34,7 @@ class Article < ApplicationRecord
   scope :lower_price_than, ->(entry_price) { where("price =< ?", entry_price)}
   #Para obtener artículos entre un rango de precios, solo se necesita anidar los 2 queries anteriores.
 
-  #Este query nos devuelve todos los artículos entre un rango de coordenadas.
+  #Este query nos devuelve todos los artículos entre un rango de coordenadas (ubicacion).
   scope :location, ->(latitude_max, latitude_min,langitude_max, langitude_min) { 
     joins(:user).where("users.latitude":latitude_max..latitude_min)
     .where("users.langitude":langitude_max..langitude_min)}
@@ -52,6 +52,7 @@ class Article < ApplicationRecord
   scope :created_after, ->(time) { where("created_at > ?", time)}
   #Para obtener los artículos entre un rango de fechas, solo se necesita anidar los 2 queries anteriores.
 
-  scope :belongsuser, ->(param){ joins(:user).where("user.name = ?",param)}
+  #Este query nos devuelve los artículos de un usuario especifico, realizando la busqueda por nombre.
+  scope :belongsuser, ->(param){ joins(:user).where("users.name = ?",param)}
   
 end
