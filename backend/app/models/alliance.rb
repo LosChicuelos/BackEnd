@@ -33,7 +33,8 @@ class Alliance < ApplicationRecord
   scope :created_after, ->(time) { where("created_at > ?", time)}
   #Para obtener alianzas entre un rango de fechas, solo se necesita anidar los 2 queries anteriores.
 
-
+=begin
+  #Se deja en este comentaro multiple los querries anteriores
   def self.withsale
     joins("
     INNER JOIN users  userapproval  ON alliances.approval_id  = userapproval.id 
@@ -52,5 +53,6 @@ class Alliance < ApplicationRecord
          (sales.seller_id = userapplicant.id AND sales.buyer_id = userapproval.id)
       OR (sales.seller_id = userapproval.id AND sales.buyer_id = userapplicant.id)"
     ).count()
-  end  
+  end 
+=end 
 end

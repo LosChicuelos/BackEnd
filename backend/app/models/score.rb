@@ -23,7 +23,9 @@ class Score < ApplicationRecord
   #///////// Querries /////////
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
  
+=begin
+  #Se deja en este comentaro multiple los querries anteriores
   scope :counthigherthan, -> (param) { where("score > ?",param).count} 
   scope :higherthan, -> (param) { where("score > ?",param)} 
-  
+=end
 end

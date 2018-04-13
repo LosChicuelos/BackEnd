@@ -49,6 +49,8 @@ class User < ApplicationRecord
     #///////// Querries /////////
     #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
 
+=begin
+  #Se deja en este comentaro multiple los querries anteriores
     
     scope :fivebestsellercantity, ->{
         joins("INNER JOIN sales ON sales.seller_id   = users.id").
@@ -65,5 +67,5 @@ class User < ApplicationRecord
         order('totalamount  desc').
         take(5)
     }
-    
+=end 
 end
