@@ -22,6 +22,10 @@ class Question < ApplicationRecord
   #///////// Querries /////////
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
 
-  #Este query nos devuelve todas las preguntas realizadas por un usuario especifico.
+  #Este query nos devuelve todas las preguntas realizadas por un usuario especifico, realizando la búsqueda por id.
   scope :belongsuser, ->(param){ joins("INNER JOIN users ON users.id = questions.user_id").where("users.id = ?",param)}
+
+  #Este query nos devuelve todas las preguntas realizadas a un articulo especifico, realizando la búsqueda por id.
+  scope :belongsarticle, ->(param){ joins("INNER JOIN articles ON articles.id = questions.article_id").where("articles.id = ?",param)}
+  #Para obtener las preguntas realizadas por un usuario a un articulo, solo se necesita anidar los 2 queries anteriores.
 end

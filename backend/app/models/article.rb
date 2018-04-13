@@ -52,7 +52,7 @@ class Article < ApplicationRecord
   scope :created_after, ->(time) { where("created_at > ?", time)}
   #Para obtener los artículos entre un rango de fechas, solo se necesita anidar los 2 queries anteriores.
 
-  #Este query nos devuelve los artículos de un usuario especifico, realizando la busqueda por nombre.
+  #Este query nos devuelve los artículos de un usuario especifico, realizando la búsqueda por nombre.
   scope :belongsuser, ->(param){ joins(:user).where("users.name = ?",param)}
   
 end
