@@ -22,6 +22,9 @@ class Score < ApplicationRecord
 
   #///////// Querries /////////
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
+
+  #Este query nos devuelve las calificaciones mayores a un determinado numero.
+  scope :higherthan, -> (param) { where("score > ?",param)}
  
 =begin
   #Se deja en este comentaro multiple los querries anteriores
