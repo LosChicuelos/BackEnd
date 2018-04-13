@@ -32,4 +32,10 @@ class Sale < ApplicationRecord
   #Este query nos devuelve las ventas que a realizado un usurario.
   scope :sales_per_user, ->(id_param) { where("seller_id = ?", id_param)}
 
+  #Este query nos devuelve las compras creadas después de una fecha.
+  scope :created_before, ->(time) { where("created_at <= ?", time)}
+  #Este query nos devuelve las compras creadas antes de una fecha.
+  scope :created_after, ->(time) { where("created_at > ?", time)}
+  #Para obtener compras entre un rango de fechas, solo se necesita anidar los 2 queries anteriores.
+
 end
