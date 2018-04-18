@@ -11,6 +11,11 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
+# Indexes
+#
+#  index_messages_on_receiver_id  (receiver_id)
+#  index_messages_on_sender_id    (sender_id)
+#
 
 class Message < ApplicationRecord
   has_one :sender, :class_name => "User"

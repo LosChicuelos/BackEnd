@@ -8,9 +8,16 @@
 #  article_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  photos     :string
+#
+# Indexes
+#
+#  index_photos_on_article_id  (article_id)
 #
 
 class Photo < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
+
   belongs_to :article
 
   validates :date, presence: true

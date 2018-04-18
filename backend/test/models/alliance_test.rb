@@ -5,10 +5,15 @@
 #  id           :integer          not null, primary key
 #  commentary   :text
 #  confirm      :string
-#  approval_id  :integer
-#  applicant_id :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  applicant_id :integer
+#  approval_id  :integer
+#
+# Indexes
+#
+#  index_alliances_on_applicant_id  (applicant_id)
+#  index_alliances_on_approval_id   (approval_id)
 #
 
 require 'test_helper'

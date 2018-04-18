@@ -12,6 +12,12 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_sales_on_article_id  (article_id)
+#  index_sales_on_buyer_id    (buyer_id)
+#  index_sales_on_seller_id   (seller_id)
+#
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 

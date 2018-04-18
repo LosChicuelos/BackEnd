@@ -12,6 +12,12 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_sales_on_article_id  (article_id)
+#  index_sales_on_buyer_id    (buyer_id)
+#  index_sales_on_seller_id   (seller_id)
+#
 
 class SaleSerializer < ActiveModel::Serializer
   attributes :id, :quantity, :amount, :seller_id, :buyer_id, :created_at

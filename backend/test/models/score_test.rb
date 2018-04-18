@@ -11,6 +11,12 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
+# Indexes
+#
+#  index_scores_on_qualified_id  (qualified_id)
+#  index_scores_on_qualifier_id  (qualifier_id)
+#  index_scores_on_sale_id       (sale_id)
+#
 
 require 'test_helper'
 

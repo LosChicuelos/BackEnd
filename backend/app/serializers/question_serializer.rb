@@ -11,6 +11,11 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_questions_on_article_id  (article_id)
+#  index_questions_on_user_id     (user_id)
+#
 
 class QuestionSerializer < ActiveModel::Serializer
   attributes :id, :question, :answer, :user_id, :article_id, :created_at

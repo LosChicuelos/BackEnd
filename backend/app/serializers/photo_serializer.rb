@@ -8,6 +8,11 @@
 #  article_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  photos     :string
+#
+# Indexes
+#
+#  index_photos_on_article_id  (article_id)
 #
 
 class PhotoSerializer < ActiveModel::Serializer

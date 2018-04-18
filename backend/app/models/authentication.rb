@@ -17,6 +17,12 @@
 #  updated_at             :datetime         not null
 #  authentication_token   :string(30)
 #
+# Indexes
+#
+#  index_authentications_on_authentication_token  (authentication_token) UNIQUE
+#  index_authentications_on_email                 (email) UNIQUE
+#  index_authentications_on_reset_password_token  (reset_password_token) UNIQUE
+#
 
 class Authentication < ApplicationRecord
   acts_as_token_authenticatable

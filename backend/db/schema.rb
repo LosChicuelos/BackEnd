@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406012208) do
+ActiveRecord::Schema.define(version: 20180417031728) do
 
   create_table "alliances", force: :cascade do |t|
     t.text "commentary"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20180406012208) do
     t.integer "article_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "photos"
     t.index ["article_id"], name: "index_photos_on_article_id"
   end
 
