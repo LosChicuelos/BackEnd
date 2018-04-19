@@ -35,10 +35,7 @@ class Score < ApplicationRecord
 
   #Este query nos devuelve las calificaciones mayores a un determinado numero.
   scope :higherthan, -> (param) { where("score > ?",param)}
- 
-=begin
-  #Se deja en este comentaro multiple los querries anteriores
+  
   scope :counthigherthan, -> (param) { where("score > ?",param).count} 
-  scope :higherthan, -> (param) { where("score > ?",param)} 
-=end
+
 end

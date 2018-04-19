@@ -1,6 +1,6 @@
 class PdfsController < ActionController::Base
   def get_model
-    @user = User.find(params[:id])
+    @articles = Article.fivebestsellercantitybyuser(params[:id])
   end
 
 

@@ -6,22 +6,6 @@ class PhotosController < ApplicationController
 
   # GET /photos
   def index
-    puts 'Hola2'     
-    params = {'email' => 'jframirezg@unal.edu.co',
-      'iddocument' => '12345',
-      'langitude' => 1.5654646,
-      'lastname' => 'Ramirez',
-      'latitude' => 2.3456464,
-      'name' => 'Jose',
-      'password' => '12345',
-      'phone' => '12345',
-      'typedocument' => '12345',
-      'iddocument' => '12345',
-      'iddocument' => '12345',
-    }
-    postData = Net::HTTP.post_form(URI.parse('http://backend-pipemax85.c9users.io/users'), {'email'=>'cfra@unal.edu.co'})
-    puts postData.body
-    
     @photos = Photo.paginatedef(params[:page])
     render json: @photos
   end

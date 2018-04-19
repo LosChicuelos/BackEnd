@@ -1,15 +1,24 @@
+<h1>Articles</h1>
 
-<header>
-<pre><h3>ID = <%= @user.id %>                  Score = <%= @user.id %>                   Principal tag = <%= @user.id %> </h3></pre>
-<h1><%= @user.id %></h1> 
-</header><hr>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Inventory</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<body>
-    <h2>TIPO DE POST -- Dieta</h2>
-    <p><B>Id Dieta:</B> <%= @user.id %></p>
-</body>
-
-<footer>
-  <hr><hr>
-  <pre><B>Creado por:</B> <%= @user.id %>                                <B>Hora de creacion:</B> <%= @user.created_at %>    <B>Hora ultima modificacion:</B> <%= @user.updated_at %></B></pre>
-</footer>
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.name %></td>
+        <td><%= article.description %></td>
+        <td><%= article.price %></td>
+        <td><%= article.inventory %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
