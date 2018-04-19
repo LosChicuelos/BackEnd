@@ -3,8 +3,7 @@ class MessagesController < ApplicationController
 
   # GET /messages
   def index
-    @messages = Message.paginate(:page => params[:page], :per_page => 5)
-
+    @messages = Message.paginatedef(params[:page])
     render json: @messages
   end
 

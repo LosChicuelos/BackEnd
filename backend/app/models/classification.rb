@@ -12,6 +12,11 @@ class Classification < ApplicationRecord
     has_many :articles
 
     validates :name, presence: true, length: { minimum: 5, maximum: 50 }
+        
+    scope :paginatedef, -> (param){
+        Classification.paginate(:page => param, :per_page => 6)
+    }
+
 
     #///////// Querries /////////
 	#En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).

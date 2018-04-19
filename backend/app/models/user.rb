@@ -45,6 +45,10 @@ class User < ApplicationRecord
     validates :latitude, presence: true, length: {minimum: 5, maximum: 30}
     validates :langitude, presence: true, length: {minimum: 5, maximum: 30}
     validates :password, presence: true, length: {minimum: 8, maximum: 20}
+    
+    scope :paginatedef, -> (param){
+        User.paginate(:page => param, :per_page => 6)
+    }
 
     #///////// Querries /////////
     #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
@@ -68,6 +72,7 @@ class User < ApplicationRecord
     }
 =end
 
+
 =begin
   #Se deja en este comentaro multiple los querries anteriores
     
@@ -87,4 +92,14 @@ class User < ApplicationRecord
         take(5)
     }
 =end 
+
+  def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "file_name"   # Excluding ".pdf" extension.
+      end
+    end
+  end
+
 end

@@ -28,7 +28,11 @@ class Sale < ApplicationRecord
   validates :date, presence: true
   validates :quantity, presence: true, numericality:  true 
   validates :amount, presence: true, numericality: true
-  
+    
+  scope :paginatedef, -> (param){
+      Sale.paginate(:page => param, :per_page => 6)
+  }
+    
   #///////// Querries /////////
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
 

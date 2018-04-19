@@ -23,6 +23,12 @@ class Alliance < ApplicationRecord
   validates :commentary, presence: true, length: { minimum: 5, maximum: 500 }
   validates :confirm, length: { minimum: 2, maximum: 8 }
   
+    
+  scope :paginatedef, -> (param){
+      Alliance.paginate(:page => param, :per_page => 6)
+  }
+
+  
   #///////// Querries /////////
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
 
