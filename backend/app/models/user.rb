@@ -65,11 +65,12 @@ class User < ApplicationRecord
         Sale.purchases_per_user(param).joins("INNER JOIN scores ON scores.sale_id = sales.id").count
     }
 
-
+=begin
     #Este query nos devuelve las calificación de un usuario, como comprador.
     scope :qualifications_score, -> (param) { 
         Sale.purchases_per_user(param).includes(:scores).joins("INNER JOIN scores ON scores.sale_id = sales.id")
     }
+=end
 
 
 =begin

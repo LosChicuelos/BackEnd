@@ -30,6 +30,12 @@ module Backend
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    #Configuracion de la gema delayed_job_active_record
+    #Aqui indicamos a rails la queue donde se mandan los jobs
+    config.active_job.queue_adapter = :delayed_job
+    #modificar example.com para hacerlo funcional
+    config.action_mailer.default_url_options = { host: 'example.com'}
+
     #Configuracion de Rack CORS
     config.middleware.insert_before 0, Rack::Cors do
       allow do
