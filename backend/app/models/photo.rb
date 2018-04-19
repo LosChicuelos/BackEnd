@@ -22,6 +22,12 @@ class Photo < ApplicationRecord
 
   validates :date, presence: true
   validates :photo, presence: true
+  
+    
+  scope :paginatedef, -> (param){
+      Photo.paginate(:page => param, :per_page => 6)
+  }
+
 
   #///////// Querries /////////
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
