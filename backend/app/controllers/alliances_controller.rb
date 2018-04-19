@@ -8,44 +8,53 @@ class AlliancesController < ApplicationController
     render json: @alliances
   end
 
-  # GET /alliances/1
+  # GET /alliances/:id
   def show
-    render json: @alliance
+    @alliance = Alliance.find(params[:id])
+  end
+
+  # GET /alliances/new
+  def new
+    @alliance = Alliance.new
+  end
+
+  def edit
+    @alliance = Alliance.find(params[:id])
   end
 
   # POST /alliances
   def create
-    @alliance = Alliance.new(alliance_params)
-
-      if @alliance.save
-      render json: @alliance, status: :created, location: @alliance
-      else
-      render json: @alliance.errors, status: :unprocessable_entity
+    @alliance = Alliance.new(alliance_params)  
+    
+    if @alliance.save
+      redirect_to @alliance
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /alliances/1
+  # PUT /alliances/:id
   def update
+      @alliance = alliance.find(params[:id])
       if @alliance.update(alliance_params)
-      render json: @alliance
+        redirect_to @alliance
       else
-      render json: @alliance.errors, status: :unprocessable_entity
+      render :edit
     end
   end
 
-  # DELETE /alliances/1
+  # DELETE /alliances/:id
+=begin
   def destroy
+    @alliance = Alliance.find(params[:id])
     @alliance.destroy
+    redirect_to alliances_path
   end
+=end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_alliance
-      @alliance = Alliance.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
+    
     def alliance_params
-      params.require(:alliance).permit(:commentary, :confirm, :approval_id, :applicant_id)
+      params.require(:alliance).permit(:commentary, :confirm)
     end
-end
+  end
