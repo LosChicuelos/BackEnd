@@ -24,6 +24,10 @@ class Message < ApplicationRecord
   validates :topic, presence: true, length: { minimum: 5, maximum: 50 }
   validates :content, presence: true, length: { minimum: 10, maximum: 500 }
   validates :date, presence: true
+    
+  scope :paginatedef, -> (param){
+      Message.paginate(:page => param, :per_page => 6)
+  }
   
   #///////// Querries /////////
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).

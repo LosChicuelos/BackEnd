@@ -25,6 +25,10 @@ class Score < ApplicationRecord
 
   validates :commentary, presence: true, length: { maximum: 500 }
   validates :score, presence: true, numericality: { only_integer: true }, length: { maximum: 1 }
+  
+  scope :paginatedef, -> (param){
+      Score.paginate(:page => param, :per_page => 6)
+  }
 
   #///////// Querries /////////
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).

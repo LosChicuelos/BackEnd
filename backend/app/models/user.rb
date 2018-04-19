@@ -45,6 +45,10 @@ class User < ApplicationRecord
     validates :latitude, presence: true, length: {minimum: 5, maximum: 30}
     validates :langitude, presence: true, length: {minimum: 5, maximum: 30}
     validates :password, presence: true, length: {minimum: 8, maximum: 20}
+    
+    scope :paginatedef, -> (param){
+        User.paginate(:page => param, :per_page => 6)
+    }
 
     #///////// Querries /////////
     #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
@@ -61,12 +65,12 @@ class User < ApplicationRecord
         Sale.purchases_per_user(param).joins("INNER JOIN scores ON scores.sale_id = sales.id").count
     }
 
-=begin
+
     #Este query nos devuelve las calificación de un usuario, como comprador.
     scope :qualifications_score, -> (param) { 
         Sale.purchases_per_user(param).includes(:scores).joins("INNER JOIN scores ON scores.sale_id = sales.id")
     }
-=end
+
 
 =begin
   #Se deja en este comentaro multiple los querries anteriores

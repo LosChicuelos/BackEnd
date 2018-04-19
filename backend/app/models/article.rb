@@ -29,6 +29,10 @@ class Article < ApplicationRecord
   validates :description, presence: true, length: { minimum: 5, maximum: 500 }
   validates :inventory, presence: true, numericality: true
   validates :price, presence: true, numericality: true
+  
+  scope :paginatedef, -> (param){
+      Article.paginate(:page => param, :per_page => 6)
+  }
 
   #///////// Querries /////////
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
