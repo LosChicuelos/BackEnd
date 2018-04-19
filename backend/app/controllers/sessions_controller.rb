@@ -9,5 +9,13 @@ class SessionsController < ApplicationController
     end
 
     def destroy
+        # byebug
+        current_authentication&.authentication_token = nil
+        if current_authentication.save
+            
+            head(:ok)
+        else 
+            head(:unauthorized)
+        end
     end
 end

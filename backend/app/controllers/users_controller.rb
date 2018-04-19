@@ -1,15 +1,16 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
-
+  
   # GET /users
   def index
+    # byebug
     @users = User.paginate(:page => params[:page], :per_page => 5)
 
-    render json: @users
+    render json: @users, status: :ok
   end
 
   # GET /users/1
   def show
+    
     render json: @user
   end
 
