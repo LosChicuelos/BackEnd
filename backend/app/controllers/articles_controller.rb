@@ -13,9 +13,9 @@ class ArticlesController < ApplicationController
     render json: @articles
   end
 
-  # GET /articles/1
+  # GET /articles/:id
   def show
-    render json: @article
+    @article = article.find(params[:id])
   end
 
   # POST /articles
@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /articles/1
+  # PATCH/PUT /articles/:id
   def update
       if @article.update(article_params)
       render json: @article
@@ -38,7 +38,7 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # DELETE /articles/1
+  # DELETE /articles/:id
   def destroy
     @article.destroy
   end

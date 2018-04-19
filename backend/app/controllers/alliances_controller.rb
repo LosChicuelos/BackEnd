@@ -7,9 +7,9 @@ class AlliancesController < ApplicationController
     render json: @alliances
   end
 
-  # GET /alliances/1
+  # GET /alliances/:id
   def show
-    render json: @alliance
+    @alliance = alliance.find(params[:id])
   end
 
   # POST /alliances
@@ -23,7 +23,7 @@ class AlliancesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /alliances/1
+  # PATCH/PUT /alliances/:id
   def update
       if @alliance.update(alliance_params)
       render json: @alliance
@@ -32,7 +32,7 @@ class AlliancesController < ApplicationController
     end
   end
 
-  # DELETE /alliances/1
+  # DELETE /alliances/:id
   def destroy
     @alliance.destroy
   end
