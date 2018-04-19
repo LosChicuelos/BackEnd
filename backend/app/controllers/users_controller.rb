@@ -1,16 +1,12 @@
 class UsersController < ApplicationController
+
+  before_action :authenticate_authentication!, :set_user, only: [:show, :update, :destroy]
   
   # GET /users
   def index
-<<<<<<< HEAD
     # byebug
-    @users = User.paginate(:page => params[:page], :per_page => 5)
-
-    render json: @users, status: :ok
-=======
     @users = User.paginatedef(params[:page])
-    render json: @users
->>>>>>> 621ba04699eaa20e85b198cdb153ee9cc546b325
+    render json: @users, status: :ok
   end
 
   # GET /users/1
