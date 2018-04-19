@@ -7,6 +7,11 @@ class ArticlesController < ApplicationController
 
     render json: @articles
   end
+  
+  def belongsuser
+    @articles = Article.belongsuserid(params[:user_id])
+    render json: @articles
+  end
 
   # GET /articles/1
   def show

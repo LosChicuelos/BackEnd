@@ -56,6 +56,7 @@
 #                 PATCH  /classifications/:id(.:format) classifications#update
 #                 PUT    /classifications/:id(.:format) classifications#update
 #                 DELETE /classifications/:id(.:format) classifications#destroy
+#     belongsuser GET    /belongsuser(.:format)         articles#belongsuser
 #        sessions POST   /sessions(.:format)            sessions#create
 #         session DELETE /sessions/:id(.:format)        sessions#destroy
 # 
@@ -73,6 +74,8 @@ Rails.application.routes.draw do
   resources :articles
   resources :users
   resources :classifications
+  get '/belongsuser', to: "articles#belongsuser"
+
 
   resources :sessions, only: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
