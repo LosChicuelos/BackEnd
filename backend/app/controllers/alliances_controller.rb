@@ -43,6 +43,7 @@ class AlliancesController < ApplicationController
     end
   end
 
+  # NO aplica Delete
   # DELETE /alliances/:id
 =begin
   def destroy
