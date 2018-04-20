@@ -20,8 +20,8 @@ class Photo < ApplicationRecord
 
   belongs_to :article
 
-  validates :date, presence: true
-  validates :photo, presence: true
+  validates :article_id, presence: true
+  validates :photos, presence: true
   
     
   scope :paginatedef, -> (param){

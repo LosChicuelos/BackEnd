@@ -67,7 +67,7 @@ class User < ApplicationRecord
     }
     
     #Este query nos devuelve el id de un usuario.
-    scope :id_user, -> (param) { select("id").where("email <= ?", param)}
+    scope :id_user, -> (param) { select("id").where("email == ?", param)}
 
 =begin
     #Este query nos devuelve las calificación de un usuario, como comprador.
