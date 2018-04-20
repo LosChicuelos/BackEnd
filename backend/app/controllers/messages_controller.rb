@@ -7,12 +7,11 @@ class MessagesController < ApplicationController
     render json: @messages
   end
 
-  # GET /messages/1
-  def show
-    render json: @message
+def show
+    @message = message.find(params[:id])
   end
 
-  # POST /messages
+  # POST /articles
   def create
     @message = Message.new(message_params)
 
@@ -23,7 +22,7 @@ class MessagesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /messages/1
+  # PATCH/PUT /articles/:id
   def update
       if @message.update(message_params)
       render json: @message
@@ -32,17 +31,16 @@ class MessagesController < ApplicationController
     end
   end
 
-  # DELETE /messages/1
+  # DELETE /articles/:id
   def destroy
     @message.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_message
-      @message = Message.find(params[:id])
+    def set_clasification
+      @message = Classification.find(params[:id])
     end
-
     # Only allow a trusted parameter "white list" through.
     def message_params
       params.require(:message).permit(:topic, :content, :date, :sender_id, :receiver_id)

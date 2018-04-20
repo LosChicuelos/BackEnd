@@ -10,12 +10,11 @@ class PhotosController < ApplicationController
     render json: @photos
   end
 
-  # GET /photos/1
   def show
-    render json: @photo
+    @photo = photo.find(params[:id])
   end
 
-  # POST /photos
+  # POST /articles
   def create
     @photo = Photo.new(photo_params)
 
@@ -26,7 +25,7 @@ class PhotosController < ApplicationController
     end
   end
 
-  # PATCH/PUT /photos/1
+  # PATCH/PUT /articles/:id
   def update
       if @photo.update(photo_params)
       render json: @photo
@@ -35,7 +34,7 @@ class PhotosController < ApplicationController
     end
   end
 
-  # DELETE /photos/1
+  # DELETE /articles/:id
   def destroy
     @photo.destroy
   end
@@ -48,6 +47,7 @@ class PhotosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def photo_params
-      params.require(:photo).permit(:date, :photo, :article_id,:photos)
+      puts params
+      params.require(:article_id).permit(:article_id,:photos)
     end
 end

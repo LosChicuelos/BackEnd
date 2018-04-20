@@ -7,12 +7,11 @@ class SalesController < ApplicationController
     render json: @sales
   end
 
-  # GET /sales/1
   def show
-    render json: @sale
+    @sale = sale.find(params[:id])
   end
 
-  # POST /sales
+  # POST /articles
   def create
     @sale = Sale.new(sale_params)
 
@@ -23,7 +22,7 @@ class SalesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /sales/1
+  # PATCH/PUT /articles/:id
   def update
       if @sale.update(sale_params)
       render json: @sale
@@ -32,7 +31,7 @@ class SalesController < ApplicationController
     end
   end
 
-  # DELETE /sales/1
+  # DELETE /articles/:id
   def destroy
     @sale.destroy
   end

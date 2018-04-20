@@ -72,7 +72,7 @@
 #                                    PUT    /classifications/:id(.:format)           classifications#update
 #                                    DELETE /classifications/:id(.:format)           classifications#destroy
 #                        belongsuser GET    /belongsuser(.:format)                   articles#belongsuser
-#                                    GET    /posts/:id/showpdf(.:format)             pdfs#show {:format=>/pdf/}
+#                                    GET    /articles/user/:iduser(.:format)         pdfs#show {:format=>/pdf/}
 #                           sessions DELETE /sessions(.:format)                      sessions#destroy
 #                                    POST   /sessions(.:format)                      sessions#create
 # 
@@ -91,7 +91,8 @@ Rails.application.routes.draw do
   resources :users
   resources :classifications
   get '/belongsuser', to: "articles#belongsuser"
-  get "posts/:id/showpdf", to: "pdfs#show", format: 'pdf'
+  get "/articles/user/:iduser", to: "pdfs#show", format: 'pdf'
+  
 
   resource :sessions, only: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
