@@ -9,15 +9,14 @@ class UsersController < ApplicationController
     render json: @users, status: :ok
   end
 
-  # GET /users/1
   def show
-    
-    render json: @user
+    @user = user.find(params[:id])
   end
 
-  # POST /users
+  # POST /articles
   def create
     @user = User.new(user_params)
+
       if @user.save
       render json: @user, status: :created, location: @user
       else
@@ -25,7 +24,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
+  # PATCH/PUT /articles/:id
   def update
       if @user.update(user_params)
       render json: @user
@@ -34,7 +33,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
+  # DELETE /articles/:id
   def destroy
     @user.destroy
   end

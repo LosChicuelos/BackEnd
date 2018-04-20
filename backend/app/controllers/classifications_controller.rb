@@ -7,23 +7,23 @@ class ClassificationsController < ApplicationController
     render json: @classifications
   end
 
-  # GET /articles/:id
+  # GET /classification/:id
   def show
     @classification = classification.find(params[:id])
   end
 
-  # POST /articles
+  # POST /classification
   def create
     @classification = Classification.new(clasification_params)
 
       if @classification.save
-      render json: @classification, status: :created, location: @article
+      render json: @classification, status: :created, location: @classification
       else
       render json: @classification.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /articles/:id
+  # PATCH/PUT /classification/:id
   def update
       if @classification.update(clasification_params)
       render json: @classification
@@ -32,7 +32,7 @@ class ClassificationsController < ApplicationController
     end
   end
 
-  # DELETE /articles/:id
+  # DELETE /classification/:id
 =begin
   def destroy
     @classification.destroy
