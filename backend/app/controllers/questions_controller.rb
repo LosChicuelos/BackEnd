@@ -17,6 +17,10 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
       if @question.save
+        
+      #Con la siguiente linea se envia un correo al vendedor, por cada nueva pregunta.
+      NewQuestionMailer.notify(@question).deliver_now
+      
       render json: @question, status: :created, location: @question
       else
       render json: @question.errors, status: :unprocessable_entity

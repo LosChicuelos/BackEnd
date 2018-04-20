@@ -1,10 +1,10 @@
 # == Schema Information
-# Schema version: 20180420045710
+# Schema version: 20180420095842
 #
 # Table name: users
 #
 #  id           :integer          not null, primary key
-#  type         :string
+#  typeuser     :string
 #  iddocument   :string
 #  typedocument :string
 #  email        :string
@@ -66,8 +66,14 @@ class User < ApplicationRecord
         Sale.purchases_per_user(param).joins("INNER JOIN scores ON scores.sale_id = sales.id").count
     }
     
-    #Este query nos devuelve el id de un usuario.
+    #Este query nos devuelve el id de un usuario, lo busca por email.
     scope :id_user, -> (param) { select("id").where("email == ?", param)}
+    
+    #Este query nos devuelve el email de un usuario, lo busca por id.
+    scope :email_user, -> (param) { select("email").where("id == ?", param)}
+    
+    #Este query nos devuelve toda la informacion de un usuario, lo busca por id.
+    scope :full_user, -> (param) { where("id == ?", param)}
 
 =begin
     #Este query nos devuelve las calificación de un usuario, como comprador.
