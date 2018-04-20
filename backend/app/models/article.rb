@@ -33,6 +33,15 @@ class Article < ApplicationRecord
   scope :paginatedef, -> (param){
       Article.paginate(:page => param, :per_page => 6)
   }
+  
+  scope :fivebestsellercantitybyuser, ->(userid){
+    joins(:sales).
+    select("*,count(articles.id) as count_id").
+    where("seller_id == ?", userid).
+    group('articles.id').
+    order('count_id  desc').
+    take(5)
+  }
 
   #///////// Querries /////////
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
@@ -51,6 +60,11 @@ class Article < ApplicationRecord
   #Este query nos devuelve todos los artículos de una clasificación dada.
   scope :classificationname, ->(classificationname) { 
     joins(:classification).where("classifications.name = ?", classificationname)}
+
+  #Este query nos devuelve todos los artículos de una clasificación dada.
+  scope :bestsalebyuser, ->(iduser) { 
+    joins(:user).where("classifications.name = ?", classificationname)}
+
   
   #Este query busca un articulo por nombre o parte del monbre.
   scope :in_the_name, ->(string) { where("name LIKE :query", query: "%#{string}%")}

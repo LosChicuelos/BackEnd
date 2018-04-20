@@ -72,10 +72,6 @@ class User < ApplicationRecord
     }
 =end
 
-
-=begin
-  #Se deja en este comentaro multiple los querries anteriores
-    
     scope :fivebestsellercantity, ->{
         joins("INNER JOIN sales ON sales.seller_id   = users.id").
         group('users.id').
@@ -91,15 +87,5 @@ class User < ApplicationRecord
         order('totalamount  desc').
         take(5)
     }
-=end 
-
-  def show
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render pdf: "file_name"   # Excluding ".pdf" extension.
-      end
-    end
-  end
 
 end

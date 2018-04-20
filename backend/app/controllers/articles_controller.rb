@@ -4,7 +4,6 @@ class ArticlesController < ApplicationController
   # GET /articles
   def index
     @articles = Article.paginatedef(params[:page])
-
     render json: @articles
   end
   

@@ -1,3 +1,6 @@
+require "uri"
+require 'net/http'
+
 class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :update, :destroy]
 

@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180419062525) do
+ActiveRecord::Schema.define(version: 20180417031728) do
 
   create_table "alliances", force: :cascade do |t|
     t.text "commentary"
     t.string "confirm"
-    t.integer "approval_id"
-    t.integer "applicant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "applicant_id"
+    t.integer "approval_id"
     t.index ["applicant_id"], name: "index_alliances_on_applicant_id"
     t.index ["approval_id"], name: "index_alliances_on_approval_id"
   end
@@ -59,21 +59,6 @@ ActiveRecord::Schema.define(version: 20180419062525) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer "priority", default: 0, null: false
-    t.integer "attempts", default: 0, null: false
-    t.text "handler", null: false
-    t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string "locked_by"
-    t.string "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "messages", force: :cascade do |t|
