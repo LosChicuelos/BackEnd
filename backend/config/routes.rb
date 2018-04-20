@@ -72,7 +72,7 @@
 #                                    PUT    /classifications/:id(.:format)           classifications#update
 #                                    DELETE /classifications/:id(.:format)           classifications#destroy
 #                        belongsuser GET    /belongsuser(.:format)                   articles#belongsuser
-#                                    GET    /posts/:id/showpdf(.:format)             pdfs#show {:format=>/pdf/}
+#                                    GET    /articles/user/:iduser(.:format)         pdfs#show {:format=>/pdf/}
 #                           sessions DELETE /sessions(.:format)                      sessions#destroy
 #                                    POST   /sessions(.:format)                      sessions#create
 # 
