@@ -12,44 +12,66 @@ class ArticlesController < ApplicationController
     render json: @articles
   end
 
+<<<<<<< HEAD
   # GET /articles/:id
   def show
     @article = article.find(params[:id])
+=======
+ # GET /articles/:id
+  def show
+    @article = Article.find(params[:id])
+  end
+
+  # GET /articles/new
+  def new
+    @article = Article.new
+  end
+
+  def edit
+    @article = Article.find(params[:id])
+>>>>>>> 29ee22455e56b451f562a77a65aee1ec9c0e360c
   end
 
   # POST /articles
   def create
-    @article = Article.new(article_params)
-
-      if @article.save
-      render json: @article, status: :created, location: @article
-      else
-      render json: @article.errors, status: :unprocessable_entity
+    @article = Article.new(article_params)  
+    
+    if @article.save
+      redirect_to @article
+    else
+      render :new
     end
   end
 
+<<<<<<< HEAD
   # PATCH/PUT /articles/:id
+=======
+  # PUT /articles/:id
+>>>>>>> 29ee22455e56b451f562a77a65aee1ec9c0e360c
   def update
-      if @article.update(article_params)
-      render json: @article
+      @article = article.find(params[:id])
+      if @article.update(alliance_params)
+        redirect_to @article
       else
-      render json: @article.errors, status: :unprocessable_entity
+      render :edit
     end
   end
 
   # DELETE /articles/:id
   def destroy
+    @article = Article.find(params[:id])
     @article.destroy
+    redirect_to article_path
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def article_params
+    
+  def article_params
       params.require(:article).permit(:name, :description, :price, :inventory, :user_id, :classification_id)
+<<<<<<< HEAD
     end
 end
+=======
+  end
+end
+>>>>>>> 29ee22455e56b451f562a77a65aee1ec9c0e360c
