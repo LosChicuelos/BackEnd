@@ -7,39 +7,41 @@ class ClassificationsController < ApplicationController
     render json: @classifications
   end
 
-  # GET /classifications/1
+  # GET /articles/:id
   def show
-    render json: @classification
+    @classification = classification.find(params[:id])
   end
 
-  # POST /classifications
+  # POST /articles
   def create
-    @classification = Classification.new(classification_params)
+    @classification = Classification.new(clasification_params)
 
       if @classification.save
-      render json: @classification, status: :created, location: @classification
+      render json: @classification, status: :created, location: @article
       else
       render json: @classification.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /classifications/1
+  # PATCH/PUT /articles/:id
   def update
-      if @classification.update(classification_params)
+      if @classification.update(clasification_params)
       render json: @classification
       else
       render json: @classification.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /classifications/1
+  # DELETE /articles/:id
+=begin
   def destroy
     @classification.destroy
   end
+=end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_classification
+    def set_clasification
       @classification = Classification.find(params[:id])
     end
 
