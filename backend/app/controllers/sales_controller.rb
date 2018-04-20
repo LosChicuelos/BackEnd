@@ -16,6 +16,10 @@ class SalesController < ApplicationController
     @sale = Sale.new(sale_params)
 
       if @sale.save
+        
+      #Con la siguiente linea se envia un correo al vendedor, por cada nueva compra.
+      NotifySellerMailer.notify(@sale).deliver_now
+      
       render json: @sale, status: :created, location: @sale
       else
       render json: @sale.errors, status: :unprocessable_entity

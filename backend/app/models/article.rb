@@ -79,4 +79,7 @@ class Article < ApplicationRecord
   #Este query nos devuelve los artículos de un usuario especifico, realizando la búsqueda por nombre.
   scope :belongsuser, ->(param){ joins(:user).where("users.name = ?",param)}
   
+  #Este query nos devuelve el id de usuario del vendedor, lo busca por id del articulo.
+  scope :id_user_seller, -> (param) { select("user_id").where("id == ?", param)}
+  
 end
