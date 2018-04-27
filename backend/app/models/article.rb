@@ -47,9 +47,9 @@ class Article < ApplicationRecord
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
   
   #Este query nos devuelve los productos que tienen un precio igual o mayor que el parámetro de entrada.
-  scope :higher_price_than, ->(entry_price) { where("price => ?", entry_price)}
+  scope :higher_price_than, ->(entry_price) { where("price >= ?", entry_price)}
   #Este query nos devuelve los productos que tienen un precio igual o menor que el parámetro de entrada.
-  scope :lower_price_than, ->(entry_price) { where("price =< ?", entry_price)}
+  scope :lower_price_than, ->(entry_price) { where("price <= ?", entry_price)}
   #Para obtener artículos entre un rango de precios, solo se necesita anidar los 2 queries anteriores.
 
   #Este query nos devuelve todos los artículos entre un rango de coordenadas (ubicacion).
