@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 20180420095842) do
   create_table "alliances", force: :cascade do |t|
     t.text "commentary"
     t.string "confirm"
-    t.integer "approval_id"
-    t.integer "applicant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "applicant_id"
+    t.integer "approval_id"
     t.index ["applicant_id"], name: "index_alliances_on_applicant_id"
     t.index ["approval_id"], name: "index_alliances_on_approval_id"
   end
