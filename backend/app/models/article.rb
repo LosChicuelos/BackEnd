@@ -67,7 +67,7 @@ class Article < ApplicationRecord
 
   
   #Este query busca un articulo por nombre o parte del monbre.
-  scope :in_the_name, ->(string) { where("name LIKE :query", query: "%#{string}%")}
+  scope :in_the_name, ->(string) { where("articles.name LIKE :query", query: "%#{string}%")}
 
   #Este query nos devuelve los artículos creados después de una fecha.
   scope :created_before, ->(time) { where("created_at <= ?", time)}
@@ -75,11 +75,33 @@ class Article < ApplicationRecord
   scope :created_after, ->(time) { where("created_at > ?", time)}
   #Para obtener los artículos entre un rango de fechas, solo se necesita anidar los 2 queries anteriores.
   
-  scope :belongsuserid, ->(param){ joins(:user).where("users.id = ?",param)}
+  #Este query nos devuelve los artículos de un usuario especifico, realizando la búsqueda por id de usuario.
+  scope :belongsuserid, ->(param){ 
+    if param != nil
+      joins(:user).where("users.id = ?",param)
+    else
+      all
+    end
+    }
   #Este query nos devuelve los artículos de un usuario especifico, realizando la búsqueda por nombre.
   scope :belongsuser, ->(param){ joins(:user).where("users.name = ?",param)}
   
   #Este query nos devuelve el id de usuario del vendedor, lo busca por id del articulo.
   scope :id_user_seller, -> (param) { select("user_id").where("id == ?", param)}
+  
+  #Prueba de anidacion de querries
+  def self.prueba(param)
+    puts "line de prueba 1 ---------------------------"
+    if param ==  nil
+      puts "line de prueba 2 ---------------------------"
+      newrelation = self.belongsuserid(4)
+      
+      newrelation = newrelation.in_the_name("Ergonomic")
+    else
+      puts "line de prueba 3 ---------------------------"
+      newrelation = self.belongsuserid(nil).in_the_name("Ergonomic")
+      newrelation2 = newrelation.in_the_name("Ergonomic")
+    end
+  end
   
 end
