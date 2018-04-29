@@ -47,9 +47,21 @@ class Article < ApplicationRecord
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
   
   #Este query nos devuelve los productos que tienen un precio igual o mayor que el parámetro de entrada.
-  scope :higher_price_than, ->(entry_price) { where("price >= ?", entry_price)}
+  scope :higher_price_than, ->(param) { 
+    if param != nil
+      where("price >= ?", param)
+    else
+      all
+    end
+    }
   #Este query nos devuelve los productos que tienen un precio igual o menor que el parámetro de entrada.
-  scope :lower_price_than, ->(entry_price) { where("price <= ?", entry_price)}
+  scope :lower_price_than, ->(param) { 
+    if param != nil
+      where("price <= ?", param)
+    else
+      all
+    end
+    }
   #Para obtener artículos entre un rango de precios, solo se necesita anidar los 2 queries anteriores.
 
   #Este query nos devuelve todos los artículos entre un rango de coordenadas (ubicacion).
@@ -62,17 +74,36 @@ class Article < ApplicationRecord
     joins(:classification).where("classifications.name = ?", classificationname)}
 
   #Este query nos devuelve todos los artículos de una clasificación dada.
+  #Este query parece tener un error, pendiente de verificacion
   scope :bestsalebyuser, ->(iduser) { 
     joins(:user).where("classifications.name = ?", classificationname)}
 
   
   #Este query busca un articulo por nombre o parte del monbre.
-  scope :in_the_name, ->(string) { where("articles.name LIKE :query", query: "%#{string}%")}
+  scope :in_the_name, ->(param) { 
+    if param != nil
+      where("articles.name LIKE :query", query: "%#{param}%")
+    else
+      all
+    end
+    }
 
-  #Este query nos devuelve los artículos creados después de una fecha.
-  scope :created_before, ->(time) { where("created_at <= ?", time)}
   #Este query nos devuelve los artículos creados antes de una fecha.
-  scope :created_after, ->(time) { where("created_at > ?", time)}
+  scope :created_before, ->(param) { 
+    if param != nil
+      where("created_at <= ?", param)
+    else
+      all
+    end
+    }
+  #Este query nos devuelve los artículos creados despues de una fecha.
+  scope :created_after, ->(param) { 
+    if param != nil
+      where("created_at => ?", param)
+    else
+      all
+    end
+    }
   #Para obtener los artículos entre un rango de fechas, solo se necesita anidar los 2 queries anteriores.
   
   #Este query nos devuelve los artículos de un usuario especifico, realizando la búsqueda por id de usuario.
@@ -89,18 +120,19 @@ class Article < ApplicationRecord
   #Este query nos devuelve el id de usuario del vendedor, lo busca por id del articulo.
   scope :id_user_seller, -> (param) { select("user_id").where("id == ?", param)}
   
-  #Prueba de anidacion de querries
+  #Prueba de anidacion de querries, esta funcion debe ser borrada mas adelante
   def self.prueba(param)
     puts "line de prueba 1 ---------------------------"
     if param ==  nil
       puts "line de prueba 2 ---------------------------"
       newrelation = self.belongsuserid(4)
       
-      newrelation = newrelation.in_the_name("Ergonomic")
+      newrelation = newrelation.in_the_name(nil)
     else
       puts "line de prueba 3 ---------------------------"
-      newrelation = self.belongsuserid(nil).in_the_name("Ergonomic")
-      newrelation2 = newrelation.in_the_name("Ergonomic")
+      newrelation = self.belongsuserid(nil)
+      newrelation = newrelation.in_the_name("Ergonomic")
+      
     end
   end
   
