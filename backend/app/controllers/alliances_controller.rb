@@ -9,9 +9,6 @@ class AlliancesController < ApplicationController
 
   # GET /alliances/:id
   def show
-<<<<<<< HEAD
-    @alliance = alliance.find(params[:id])
-=======
     @alliance = Alliance.find(params[:id])
   end
 
@@ -22,7 +19,6 @@ class AlliancesController < ApplicationController
 
   def edit
     @alliance = Alliance.find(params[:id])
->>>>>>> 29ee22455e56b451f562a77a65aee1ec9c0e360c
   end
 
   # POST /alliances
@@ -36,11 +32,7 @@ class AlliancesController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
   # PATCH/PUT /alliances/:id
-=======
-  # PUT /alliances/:id
->>>>>>> 29ee22455e56b451f562a77a65aee1ec9c0e360c
   def update
       @alliance = alliance.find(params[:id])
       if @alliance.update(alliance_params)
@@ -50,13 +42,9 @@ class AlliancesController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
-  # DELETE /alliances/:id
-=======
   # NO aplica Delete
   # DELETE /alliances/:id
 =begin
->>>>>>> 29ee22455e56b451f562a77a65aee1ec9c0e360c
   def destroy
     @alliance = Alliance.find(params[:id])
     @alliance.destroy
@@ -69,8 +57,4 @@ class AlliancesController < ApplicationController
     def alliance_params
       params.require(:alliance).permit(:commentary, :confirm)
     end
-<<<<<<< HEAD
 end
-=======
-  end
->>>>>>> 29ee22455e56b451f562a77a65aee1ec9c0e360c
