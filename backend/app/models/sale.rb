@@ -35,17 +35,59 @@ class Sale < ApplicationRecord
     
   #///////// Querries /////////
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
-
+  
+  #Este query nos devuelve las ventas donde los productos tienen un precio igual o mayor que el parámetro de entrada.
+  scope :higher_price_than, ->(param) { 
+    if param != nil
+      where("amount/quantity >= ?", param)
+    else
+      all
+    end
+    }
+  #Este query nos devuelve las ventas donde los productos tienen un precio igual o menor que el parámetro de entrada.
+  scope :lower_price_than, ->(param) { 
+    if param != nil
+      where("amount/quantity <= ?", param)
+    else
+      all
+    end
+    }
+  #Para obtener artículos entre un rango de precios, solo se necesita anidar los 2 queries anteriores.
+  
   #Este query nos devuelve las compras que a realizado un usurario.
-  scope :purchases_per_user, ->(id_param) { where("buyer_id = ?", id_param)}
+  scope :purchases_per_user, ->(param) { 
+    if param != nil
+      where("buyer_id = ?", param)
+    else
+      all
+    end
+    }
 
   #Este query nos devuelve las ventas que a realizado un usurario.
-  scope :sales_per_user, ->(id_param) { where("seller_id = ?", id_param)}
+  scope :sales_per_user, ->(param) { 
+    if param != nil
+      where("seller_id = ?", param)
+    else
+      all
+    end
+    }
 
-  #Este query nos devuelve las compras creadas después de una fecha.
-  scope :created_before, ->(time) { where("created_at <= ?", time)}
-  #Este query nos devuelve las compras creadas antes de una fecha.
-  scope :created_after, ->(time) { where("created_at > ?", time)}
+  #Este query nos devuelve las compras/ventas creadas antes de una fecha.
+  scope :created_before, ->(param) { 
+    if param != nil
+      where("created_at <= ?", param)
+    else
+      all
+    end
+    }
+  #Este query nos devuelve las compras/ventas creadas despues de una fecha.
+  scope :created_after, ->(param) { 
+    if param != nil
+      where("created_at >= ?", param)
+    else
+      all
+    end
+    }
   #Para obtener compras entre un rango de fechas, solo se necesita anidar los 2 queries anteriores.
 
 end
