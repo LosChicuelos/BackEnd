@@ -91,7 +91,7 @@ class Article < ApplicationRecord
   #Este query nos devuelve los artículos creados antes de una fecha.
   scope :created_before, ->(param) { 
     if param != nil
-      where("created_at <= ?", param)
+      where("articles.created_at <= ?", param)
     else
       all
     end
@@ -99,7 +99,7 @@ class Article < ApplicationRecord
   #Este query nos devuelve los artículos creados despues de una fecha.
   scope :created_after, ->(param) { 
     if param != nil
-      where("created_at >= ?", param)
+      where("articles.created_at >= ?", param)
     else
       all
     end
