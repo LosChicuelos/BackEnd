@@ -89,7 +89,7 @@ Rails.application.routes.draw do
   resources :photos
   resources :articles
   resources :users
-  resources :classifications
+  resources :classifications, except: [:destroy]
   get '/belongsuser', to: "articles#belongsuser"
   get "/articles/user/:iduser", to: "pdfs#show", format: 'pdf'
   get "/statistics/:iduser", to: "statistics#show", format: 'pdf'
