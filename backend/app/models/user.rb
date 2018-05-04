@@ -98,7 +98,7 @@ class User < ApplicationRecord
         take(5)
     }
     
-    #Este query nos devuelve el id de un usuario, lo busca por email.
+    #Este query nos devuelve true si existe algun usuario con el email especificado, de lo contrario devuleve false.
     def self.email_verification(param)
         self.id_user(param).present?
     end

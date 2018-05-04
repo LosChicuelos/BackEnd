@@ -53,7 +53,13 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
   end
-
+  
+# Con este metodo enviamos la verificacion de si existe un usuario con el correo enviado como parametro
+  def emailverification
+    @user = User.email_verification(params[:email])
+    render json: @user
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
