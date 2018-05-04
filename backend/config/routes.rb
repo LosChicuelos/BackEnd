@@ -70,12 +70,7 @@
 #                     classification GET    /classifications/:id(.:format)           classifications#show
 #                                    PATCH  /classifications/:id(.:format)           classifications#update
 #                                    PUT    /classifications/:id(.:format)           classifications#update
-<<<<<<< HEAD
 #                         photos_new GET    /photos/new(.:format)                    photos#new
-=======
-#                                    DELETE /classifications/:id(.:format)           classifications#destroy
-#                  emailverification GET    /emailverification(.:format)             users#emailverification
->>>>>>> f04181958fb9f41665f156cf559b5eb433e96284
 #                        belongsuser GET    /belongsuser(.:format)                   articles#belongsuser
 #                                    GET    /articles/user/:iduser(.:format)         pdfs#show {:format=>/pdf/}
 #                                    GET    /statistics/:iduser(.:format)            statistics#show {:format=>/pdf/}
