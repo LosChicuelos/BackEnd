@@ -97,5 +97,10 @@ class User < ApplicationRecord
         order('totalamount  desc').
         take(5)
     }
+    
+    #Este query nos devuelve el id de un usuario, lo busca por email.
+    def self.email_verification(param)
+        self.id_user(param).present?
+    end
 
 end
