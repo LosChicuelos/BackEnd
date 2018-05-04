@@ -92,8 +92,9 @@ Rails.application.routes.draw do
   resources :classifications
   get '/belongsuser', to: "articles#belongsuser"
   get "/articles/user/:iduser", to: "pdfs#show", format: 'pdf'
+  get "/statistics/:iduser", to: "statistics#show", format: 'pdf'
   
 
-  resource :sessions, only: [:create, :destroy]
+  resources :sessions, only: [:create, :destroy, :show, :index]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
