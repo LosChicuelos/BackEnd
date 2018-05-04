@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180420095842) do
+ActiveRecord::Schema.define(version: 20180504054551) do
 
   create_table "alliances", force: :cascade do |t|
     t.text "commentary"
     t.string "confirm"
+    t.integer "approval_id"
+    t.integer "applicant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "applicant_id"
-    t.integer "approval_id"
     t.index ["applicant_id"], name: "index_alliances_on_applicant_id"
     t.index ["approval_id"], name: "index_alliances_on_approval_id"
   end
@@ -95,6 +95,10 @@ ActiveRecord::Schema.define(version: 20180420095842) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "photos"
+    t.string "file_file_name"
+    t.string "file_content_type"
+    t.integer "file_file_size"
+    t.datetime "file_updated_at"
     t.index ["article_id"], name: "index_photos_on_article_id"
   end
 

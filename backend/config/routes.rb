@@ -70,11 +70,14 @@
 #                     classification GET    /classifications/:id(.:format)           classifications#show
 #                                    PATCH  /classifications/:id(.:format)           classifications#update
 #                                    PUT    /classifications/:id(.:format)           classifications#update
-#                                    DELETE /classifications/:id(.:format)           classifications#destroy
+#                         photos_new GET    /photos/new(.:format)                    photos#new
 #                        belongsuser GET    /belongsuser(.:format)                   articles#belongsuser
 #                                    GET    /articles/user/:iduser(.:format)         pdfs#show {:format=>/pdf/}
-#                           sessions DELETE /sessions(.:format)                      sessions#destroy
+#                                    GET    /statistics/:iduser(.:format)            statistics#show {:format=>/pdf/}
+#                           sessions GET    /sessions(.:format)                      sessions#index
 #                                    POST   /sessions(.:format)                      sessions#create
+#                            session GET    /sessions/:id(.:format)                  sessions#show
+#                                    DELETE /sessions/:id(.:format)                  sessions#destroy
 # 
 
 Rails.application.routes.draw do
@@ -90,6 +93,9 @@ Rails.application.routes.draw do
   resources :articles
   resources :users
   resources :classifications, except: [:destroy]
+
+  get "photos/new", to: "photos#new"
+
   get '/belongsuser', to: "articles#belongsuser"
   get "/articles/user/:iduser", to: "pdfs#show", format: 'pdf'
   get "/statistics/:iduser", to: "statistics#show", format: 'pdf'

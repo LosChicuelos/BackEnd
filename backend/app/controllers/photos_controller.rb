@@ -1,8 +1,5 @@
-require "uri"
-require 'net/http'
-
 class PhotosController < ApplicationController
-  before_action :set_photo, only: [:show, :update, :destroy]
+  before_action :set_photo, only: [:new, :show, :update, :destroy]
 
   # GET /photos
   def index
@@ -10,8 +7,14 @@ class PhotosController < ApplicationController
     render json: @photos
   end
 
+  # GET /articles/new
+  def new
+    @photo = Photo.new
+  end
+  
+
   def show
-    @photo = photo.find(params[:id])
+    @photo = Photo.find(params[:id])
   end
 
   # POST /articles
@@ -48,6 +51,6 @@ class PhotosController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def photo_params
       puts params
-      params.require(:article_id).permit(:article_id,:photos)
+      params.require(:article_id).permit(:article_id,:photos,:file)
     end
 end
