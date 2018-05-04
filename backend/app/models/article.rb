@@ -120,6 +120,9 @@ class Article < ApplicationRecord
   #Este query nos devuelve el id de usuario del vendedor, lo busca por id del articulo.
   scope :id_user_seller, -> (param) { select("user_id").where("id == ?", param)}
   
+  #Este query nos agrupa por mes.
+  scope :group_month, -> { group('strftime("%m", articles.created_at)')}
+  
   #Prueba de anidacion de querries, esta funcion debe ser borrada mas adelante
   def self.prueba(param)
     puts "line de prueba 1 ---------------------------"

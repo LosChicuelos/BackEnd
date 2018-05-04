@@ -74,6 +74,9 @@ class User < ApplicationRecord
     
     #Este query nos devuelve toda la informacion de un usuario, lo busca por id.
     scope :full_user, -> (param) { where("id == ?", param)}
+    
+    #Este query nos agrupa por mes.
+    scope :group_month, -> { group('strftime("%m", users.created_at)')}
 
 =begin
     #Este query nos devuelve las calificación de un usuario, como comprador.
@@ -97,5 +100,10 @@ class User < ApplicationRecord
         order('totalamount  desc').
         take(5)
     }
+    
+    #Este query nos devuelve true si existe algun usuario con el email especificado, de lo contrario devuleve false.
+    def self.email_verification(param)
+        self.id_user(param).present?
+    end
 
 end
