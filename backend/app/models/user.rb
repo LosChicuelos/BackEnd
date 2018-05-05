@@ -1,4 +1,5 @@
 # == Schema Information
+# Schema version: 20180420095842
 #
 # Table name: users
 #
@@ -64,6 +65,18 @@ class User < ApplicationRecord
     scope :count_score, -> (param) { 
         Sale.purchases_per_user(param).joins("INNER JOIN scores ON scores.sale_id = sales.id").count
     }
+    
+    #Este query nos devuelve el id de un usuario, lo busca por email.
+    scope :id_user, -> (param) { select("id").where("email == ?", param)}
+    
+    #Este query nos devuelve el email de un usuario, lo busca por id.
+    scope :email_user, -> (param) { select("email").where("id == ?", param)}
+    
+    #Este query nos devuelve toda la informacion de un usuario, lo busca por id.
+    scope :full_user, -> (param) { where("id == ?", param)}
+    
+    #Este query nos agrupa por mes.
+    scope :group_month, -> { group('strftime("%m", users.created_at)')}
 
 =begin
     #Este query nos devuelve las calificación de un usuario, como comprador.
@@ -72,10 +85,6 @@ class User < ApplicationRecord
     }
 =end
 
-
-=begin
-  #Se deja en este comentaro multiple los querries anteriores
-    
     scope :fivebestsellercantity, ->{
         joins("INNER JOIN sales ON sales.seller_id   = users.id").
         group('users.id').
@@ -91,15 +100,10 @@ class User < ApplicationRecord
         order('totalamount  desc').
         take(5)
     }
-=end 
-
-  def show
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render pdf: "file_name"   # Excluding ".pdf" extension.
-      end
+    
+    #Este query nos devuelve true si existe algun usuario con el email especificado, de lo contrario devuleve false.
+    def self.email_verification(param)
+        self.id_user(param).present?
     end
-  end
 
 end

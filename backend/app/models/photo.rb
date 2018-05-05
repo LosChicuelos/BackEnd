@@ -1,14 +1,19 @@
 # == Schema Information
+# Schema version: 20180504054551
 #
 # Table name: photos
 #
-#  id         :integer          not null, primary key
-#  date       :date
-#  photo      :binary
-#  article_id :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  photos     :string
+#  id                :integer          not null, primary key
+#  date              :date
+#  photo             :binary
+#  article_id        :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  photos            :string
+#  file_file_name    :string
+#  file_content_type :string
+#  file_file_size    :integer
+#  file_updated_at   :datetime
 #
 # Indexes
 #
@@ -20,8 +25,12 @@ class Photo < ApplicationRecord
 
   belongs_to :article
 
-  validates :date, presence: true
-  validates :photo, presence: true
+  has_attached_file :file, styles: { medium: "1280x720", thumb:"800x600"}
+  validates_attachment_content_type :file, content_type:/\Aimage\/.*\Z/
+
+
+  validates :article_id, presence: true
+  validates :photos, presence: true
   
     
   scope :paginatedef, -> (param){

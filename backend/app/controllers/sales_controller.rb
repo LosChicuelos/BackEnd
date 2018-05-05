@@ -7,23 +7,26 @@ class SalesController < ApplicationController
     render json: @sales
   end
 
-  # GET /sales/1
   def show
-    render json: @sale
+    @sale = sale.find(params[:id])
   end
 
-  # POST /sales
+  # POST /articles
   def create
     @sale = Sale.new(sale_params)
 
       if @sale.save
+        
+      #Con la siguiente linea se envia un correo al vendedor, por cada nueva compra.
+      NotifySellerMailer.notify(@sale).deliver_now
+      
       render json: @sale, status: :created, location: @sale
       else
       render json: @sale.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /sales/1
+  # PATCH/PUT /articles/:id
   def update
       if @sale.update(sale_params)
       render json: @sale
@@ -32,7 +35,7 @@ class SalesController < ApplicationController
     end
   end
 
-  # DELETE /sales/1
+  # DELETE /articles/:id
   def destroy
     @sale.destroy
   end

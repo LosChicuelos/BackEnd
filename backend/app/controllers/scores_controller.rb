@@ -8,12 +8,11 @@ class ScoresController < ApplicationController
     render json: @scores
   end
 
-  # GET /scores/1
   def show
-    render json: @score
+    @score = score.find(params[:id])
   end
 
-  # POST /scores
+  # POST /articles
   def create
     @score = Score.new(score_params)
 
@@ -24,7 +23,7 @@ class ScoresController < ApplicationController
     end
   end
 
-  # PATCH/PUT /scores/1
+  # PATCH/PUT /articles/:id
   def update
       if @score.update(score_params)
       render json: @score
@@ -33,7 +32,7 @@ class ScoresController < ApplicationController
     end
   end
 
-  # DELETE /scores/1
+  # DELETE /articles/:id
   def destroy
     @score.destroy
   end

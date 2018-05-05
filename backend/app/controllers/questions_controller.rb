@@ -8,23 +8,26 @@ class QuestionsController < ApplicationController
     render json: @questions
   end
 
-  # GET /questions/1
   def show
-    render json: @question
+    @question = question.find(params[:id])
   end
 
-  # POST /questions
+  # POST /articles
   def create
     @question = Question.new(question_params)
 
       if @question.save
+        
+      #Con la siguiente linea se envia un correo al vendedor, por cada nueva pregunta.
+      NewQuestionMailer.notify(@question).deliver_now
+      
       render json: @question, status: :created, location: @question
       else
       render json: @question.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /questions/1
+  # PATCH/PUT /articles/:id
   def update
       if @question.update(question_params)
       render json: @question
@@ -33,7 +36,7 @@ class QuestionsController < ApplicationController
     end
   end
 
-  # DELETE /questions/1
+  # DELETE /articles/:id
   def destroy
     @question.destroy
   end
