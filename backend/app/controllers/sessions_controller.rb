@@ -1,13 +1,32 @@
 class SessionsController < ApplicationController
-    def create
-        authentication = Authentication.where(email: params[:email]).first
-        if authentication&.valid_password?(params[:password])
-            render json: authentication.as_json(only: [:email, :authentication_token]), status: :created
-        else
-            head(:unauthorized)
-        end
+    
+      # GET /users
+      def index
+        @session = Authentication.all
+        render json: @session
+      end
+    
+    
+    def show
+        @session = Authentication.find(params[:id])
+        render json: @session
     end
-
+    
+    def create
+    @session = Authentication.find(params[:id])
+        render json: @session
+    end
+    
+    
     def destroy
     end
+    
+    private
+    
+        def session_params
+          params.require(:session).permit(:email, :password, :password_confirmation)
+        end
+        
+
+
 end
