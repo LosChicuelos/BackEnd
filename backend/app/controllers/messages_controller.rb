@@ -6,6 +6,12 @@ class MessagesController < ApplicationController
     @messages = Message.paginatedef(params[:page])
     render json: @messages
   end
+  
+  def belongsuser
+    puts 'Holaaaa';
+    @messages = Message.belongsuserid(params[:user_id])
+    render json: @messages
+  end
 
 def show
     @message = message.find(params[:id])

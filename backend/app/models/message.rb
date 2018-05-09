@@ -38,8 +38,7 @@ class Message < ApplicationRecord
   #Este query nos devuelve los mensajes que a recibido un usurario.
   scope :Messages_received_by_user, ->(id_param) { where("receiver_id = ?", id_param)}
 
-=begin
-  #Se deja en este comentaro multiple los querries anteriores
+  scope :belongsuser, ->(id_param) { where("receiver_id = ? or sender_id = ?", id_param,id_param)}
   scope :countexitlastweek, -> {where('created_at >= ?', 1.week.ago).count} 
   scope :lastweek, -> {where('created_at >= ?', 1.week.ago)} 
   
@@ -50,5 +49,5 @@ class Message < ApplicationRecord
     INNER JOIN alliances ON alliances.applicant_id = userapplicant.id AND alliances.approval_id = userapproval.id"
     )
   end
-=end
+
 end

@@ -97,6 +97,7 @@ Rails.application.routes.draw do
   get "photos/new", to: "photos#new"
 
   get '/belongsuser', to: "articles#belongsuser"
+  get '/messagesbelongsuser', to: "messages#belongsuser"
   get "/articles/user/:iduser", to: "pdfs#show", format: 'pdf'
   get "/statistics/:iduser", to: "statistics#show", format: 'pdf'
   
