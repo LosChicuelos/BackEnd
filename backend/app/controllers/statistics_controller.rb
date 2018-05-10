@@ -32,9 +32,9 @@ class StatisticsController < ApplicationController
 
 
     def  show
-      get_model
+      #get_model
 		  respond_to do |format|
-		      format.html
+		      #format.html
 			    format.pdf do
 				    render pdf: "template", template: "../views/pdfs/template_statistics"  
 			end

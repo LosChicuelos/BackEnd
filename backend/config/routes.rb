@@ -1,5 +1,6 @@
 # == Route Map
 #
+<<<<<<< HEAD
 #                   Prefix Verb   URI Pattern                      Controller#Action
 #         new_user_session GET    /users/sign_in(.:format)         devise/sessions#new
 #             user_session POST   /users/sign_in(.:format)         devise/sessions#create
@@ -79,7 +80,6 @@
 #                          POST   /sessions(.:format)              sessions#create
 #                  session GET    /sessions/:id(.:format)          sessions#show
 #                          DELETE /sessions/:id(.:format)          sessions#destroy
-# 
 
 Rails.application.routes.draw do
   devise_for :users
