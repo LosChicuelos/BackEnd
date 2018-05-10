@@ -72,6 +72,7 @@
 #                                    PUT    /classifications/:id(.:format)           classifications#update
 #                         photos_new GET    /photos/new(.:format)                    photos#new
 #                        belongsuser GET    /belongsuser(.:format)                   articles#belongsuser
+#                messagesbelongsuser GET    /messagesbelongsuser(.:format)           messages#belongsuser
 #                                    GET    /articles/user/:iduser(.:format)         pdfs#show {:format=>/pdf/}
 #                                    GET    /statistics/:iduser(.:format)            statistics#show {:format=>/pdf/}
 #                           sessions GET    /sessions(.:format)                      sessions#index
