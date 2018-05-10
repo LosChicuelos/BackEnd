@@ -33,9 +33,11 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
 gem 'carrierwave', '~> 1.0'
+# Gemas para generar PDF wicked_pdf y wkhtmltopdf-binary
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'rmagick'
+#Gema para las estadisticas
 gem 'gruff'
 gem 'paperclip'
 
