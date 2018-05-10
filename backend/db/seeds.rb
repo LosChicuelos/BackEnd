@@ -126,6 +126,7 @@ end
 30.times do 
     Sale.create(
         date: Time.now,
+        created_at: Faker::Date.between(1.year.ago, Date.today),
         quantity: Number.between(1, 10),
         amount: Faker::Number.between(10000, 100000),
         seller_id: Faker::Number.between(1, 10),
