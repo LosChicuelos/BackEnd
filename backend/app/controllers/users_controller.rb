@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # POST /articles
+  # POST /usuarios
   def create
     @user = User.new(user_params)
 
@@ -26,8 +26,10 @@ class UsersController < ApplicationController
       render json: @user, status: :created, location: @user
       else
       render json: @user.errors, status: :unprocessable_entity
-    end
+      end
+    
   end
+
 
   # PATCH/PUT /articles/:id
   def update
