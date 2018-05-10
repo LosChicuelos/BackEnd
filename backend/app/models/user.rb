@@ -36,7 +36,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-         has_many :alliance_approval, :class_name => 'Alliance', :foreign_key => 'approval_id'
+         
+    has_many :alliance_approval, :class_name => 'Alliance', :foreign_key => 'approval_id'
     has_many :alliance_applicant, :class_name => 'Alliance', :foreign_key => 'applicant_id'
 
     has_many :sent_private_messages, :class_name => 'Message', :foreign_key => 'sender_id'

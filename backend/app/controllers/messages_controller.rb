@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
   
   def belongsuser
     puts 'Holaaaa';
-    @messages = Message.belongsuserid(params[:user_id])
+    @messages = Message.belongsuser(params[:user_id])
     render json: @messages
   end
 

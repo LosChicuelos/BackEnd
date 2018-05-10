@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 #require 'gruff'
 
-
   
   # GET /users
   def index
@@ -20,12 +19,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
       if @user.save
-      
-      #Con la siguiente linea se envia el correo de bienvenida.
-      WelcomeUserMailer.notify(@user).deliver_now
-      render json: @user, status: :created, location: @user
-      else
-      render json: @user.errors, status: :unprocessable_entity
+
+      render json: @user, status: :created
       end
     
   end
