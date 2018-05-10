@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 #require 'gruff'
 
-  before_action :authenticate_authentication!, :set_user, only: [:show, :update, :destroy]
+
   
   # GET /users
   def index
@@ -57,6 +57,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :lastname, :typeuser, :iddocument, :typedocument, :email, :phone, :latitude, :langitude, :password)
+      params.require(:user).permit( :typeuser, :iddocument, :typedocument, :email, :phone, :latitude, :langitude, :password)
     end
 end

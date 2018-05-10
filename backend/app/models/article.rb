@@ -31,7 +31,7 @@ class Article < ApplicationRecord
   validates :price, presence: true, numericality: true
   
   scope :paginatedef, -> (param){
-      Article.paginate(:page => param, :per_page => 6)
+      Article.paginate(:page => param, :per_page => 40)
   }
   
   scope :fivebestsellercantitybyuser, ->(userid){
