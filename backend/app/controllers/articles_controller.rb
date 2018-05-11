@@ -57,6 +57,20 @@ class ArticlesController < ApplicationController
   private
     
   def article_params
-      params.require(:article).permit(:name, :description, :price, :inventory, :user_id, :classification_id)
+      params.require(:article).permit(
+        [
+          :name, 
+          :description, 
+          :price, 
+          :inventory, 
+          :user_id, 
+          :classification_id,
+          photos_atributes: %I[
+            id
+            photos
+            _destroy
+          ]
+        ]
+      )
   end
 end
