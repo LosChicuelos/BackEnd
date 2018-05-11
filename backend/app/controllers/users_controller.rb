@@ -16,11 +16,13 @@ class UsersController < ApplicationController
 
   # POST /usuarios
   def create
+    puts "------ljlkjlkjlkjlAAAAAAAAAAAAAAAAAAAAAAAA---"
     @user = User.new(user_params)
 
       if @user.save
-
-      render json: @user, status: :created
+        render json: @user, status: :created
+      else
+        head:(unprocessable_entity)
       end
     
   end
@@ -54,6 +56,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit( :typeuser, :iddocument, :typedocument, :email, :phone, :latitude, :langitude, :password)
+      params.require(:user).permit( :typeuser, :iddocument, :typedocument, :email, :phone, :latitude, :langitude, :password, :password_confirmation)
     end
 end
