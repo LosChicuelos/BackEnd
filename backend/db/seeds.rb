@@ -83,14 +83,15 @@ end
     )
 end
 
-10.times do 
+100.times do 
     Article.create(
         name: Faker::Commerce.product_name,
         description: Faker::Lorem.paragraph,
         price: Faker::Number.decimal(4, 2),
         inventory: Faker::Number.number(4),
         user_id: Faker::Number.between(1, 10),
-        classification_id: Number.between(1, 3)
+        classification_id: Number.between(1, 3),
+        created_at: Faker::Date.between(1.year.ago, Date.today)
     )
 end
 
