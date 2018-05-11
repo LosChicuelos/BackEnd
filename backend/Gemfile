@@ -36,6 +36,8 @@ gem 'carrierwave', '~> 1.0'
 # Gemas para generar PDF wicked_pdf y wkhtmltopdf-binary
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary-edge'
+
 gem 'rmagick'
 #Gema para las estadisticas
 gem 'gruff'
