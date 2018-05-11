@@ -79,6 +79,7 @@
 #                          POST   /sessions(.:format)              sessions#create
 #                  session GET    /sessions/:id(.:format)          sessions#show
 #                          DELETE /sessions/:id(.:format)          sessions#destroy
+# 
 
 Rails.application.routes.draw do
   devise_for :users

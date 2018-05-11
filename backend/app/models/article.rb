@@ -1,16 +1,21 @@
 # == Schema Information
+# Schema version: 20180511095855
 #
 # Table name: articles
 #
-#  id                :integer          not null, primary key
-#  name              :string
-#  description       :text
-#  price             :decimal(, )
-#  inventory         :integer
-#  user_id           :integer
-#  classification_id :integer
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
+#  id                 :integer          not null, primary key
+#  name               :string
+#  description        :text
+#  price              :decimal(, )
+#  inventory          :integer
+#  user_id            :integer
+#  classification_id  :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  photo_file_name    :string
+#  photo_content_type :string
+#  photo_file_size    :integer
+#  photo_updated_at   :datetime
 #
 # Indexes
 #
@@ -21,15 +26,35 @@
 class Article < ApplicationRecord
   belongs_to :user
   belongs_to :classification
-  has_many :photos
+  has_many :photos, dependent: :destroy
   has_many :questions
   has_many :sales
+
+  accepts_nested_attributes_for :photos, allow_destroy: true
 
   validates :name, presence: true, length: { minimum: 5, maximum: 50 }
   validates :description, presence: true, length: { minimum: 5, maximum: 500 }
   validates :inventory, presence: true, numericality: true
   validates :price, presence: true, numericality: true
   
+    def as_json(_opts = {})
+    {
+      id: id,
+      name: name,
+      description: description,
+      price: price,
+      inventory: inventory,
+      image_photos: covers.map do |x|
+        {
+          url: x.photo.url.absolute_url,
+          name: x.photo_file_name,
+          id: x.id
+        }
+      end
+    }
+  end
+
+
   scope :paginatedef, -> (param){
       Article.paginate(:page => param, :per_page => 40)
   }
