@@ -2,8 +2,8 @@ class StatisticsController < ActionController::Base
     
     def get_model ()
         
-        #@articles = Article.belongsuserid(params[:iduser]).higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).created_before(params[:start_date]).created_after(params[:ending_date]).group_month.count.to_a
-        @articles = Article.belongsuserid(5).higher_price_than(nil).lower_price_than(nil).created_before(nil).created_after(nil).group_month.count.to_a
+        @articles = Article.belongsuserid(params[:iduser]).higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).created_before(params[:start_date]).created_after(params[:ending_date]).group_month.count.to_a
+        #@articles = Article.belongsuserid(5).higher_price_than(nil).lower_price_than(nil).created_before(nil).created_after(nil).group_month.count.to_a
         
         #Creamos el gruff
         g = Gruff::Bar.new
