@@ -18,6 +18,9 @@
 #
 
 class Message < ApplicationRecord
+  
+  attr_accessor :sendertemp, :receivertemp
+  
   belongs_to :sender, :class_name => "User"
   belongs_to :receiver, :class_name => "User"
 
@@ -38,12 +41,22 @@ class Message < ApplicationRecord
   #Este query nos devuelve los mensajes que a recibido un usurario.
   scope :messages_received_by_user, ->(id_param) { where("receiver_id = ?", id_param).includes(:sender)}
   
+  def self.messages_sent_by_user2(param)
+    messas = Message.messages_sent_by_user(param);
+    messas.each do |message|
+      message.receivertemp = message.receiver
+    end
+    messas2 = messas
+#    messas2.each { |x| puts x.sendertemp }
+  end
+  
   def self.messages_received_by_user2(param)
     messas = Message.messages_received_by_user(param);
     messas.each do |message|
-      message.sender
+      message.sendertemp = message.sender
     end
     messas2 = messas
+#    messas2.each { |x| puts x.sendertemp }
   end
 
   scope :belongsuser, ->(id_param) { where("receiver_id = ? or sender_id = ?", id_param,id_param)}
