@@ -19,7 +19,7 @@ class StatisticsController < ActionController::Base
           g.write('exciting.png')
         else
           
-          g.title = 'Estos son los articulos que has publicado por mes'
+          g.title = ''
           
           g.labels = {}
           
@@ -55,7 +55,7 @@ class StatisticsController < ActionController::Base
           @articles.each do |data|
             g.data("Mes #{data[0]} : #{data[1]}", data[1])
           end
-          g.write('exciting.png')
+          g.write('public/images/exciting.png')
         end
         
     end
