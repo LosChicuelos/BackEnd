@@ -18,7 +18,7 @@ class SalesController < ApplicationController
       if @sale.save
         
       #Con la siguiente linea se envia un correo al vendedor, por cada nueva compra.
-      NotifySellerMailer.delay.notify(@sale) #.deliver_later(wait: 30.seconds)
+      NotifySellerMailer.notify(@sale).deliver_now
       
       render json: @sale, status: :created, location: @sale
       else
@@ -33,6 +33,15 @@ class SalesController < ApplicationController
       else
       render json: @sale.errors, status: :unprocessable_entity
     end
+  end
+  
+  def belongsuser
+    if params[:seller_id] != nil
+      @sales = Sale.sales_sell_by_user2(params[:seller_id]);
+    else 
+      @sales = Sale.sales_buy_by_user2(params[:buyer_id]);
+    end
+    render json: @sales.to_json(:methods => %w(sellertemp buyertemp articletemp))
   end
 
   # DELETE /articles/:id

@@ -79,6 +79,7 @@
 #                          POST   /sessions(.:format)              sessions#create
 #                  session GET    /sessions/:id(.:format)          sessions#show
 #                          DELETE /sessions/:id(.:format)          sessions#destroy
+# 
 
 Rails.application.routes.draw do
   devise_for :users
@@ -98,6 +99,7 @@ Rails.application.routes.draw do
 
   get '/belongsuser', to: "articles#belongsuser"
   get '/messagesbelongsuser', to: "messages#belongsuser"
+  get '/salesbelongsuser', to: "sales#belongsuser"
   get "/articles/user/:iduser", to: "pdfs#show", format: 'pdf'
   get "/statistics/:iduser", to: "statistics#show", format: 'pdf'
   

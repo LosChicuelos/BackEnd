@@ -20,8 +20,8 @@
 #
 
 class Sale < ApplicationRecord
-  has_one :seller, :class_name => "User"
-  has_one :buyer, :class_name => "User"
+  belongs_to :seller, :class_name => "User"
+  belongs_to :buyer, :class_name => "User"
   belongs_to :article
   has_many :scores
 
@@ -32,9 +32,34 @@ class Sale < ApplicationRecord
   scope :paginatedef, -> (param){
       Sale.paginate(:page => param, :per_page => 6)
   }
+  
+  attr_accessor :sellertemp, :buyertemp, :articletemp
     
   #///////// Querries /////////
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
+  scope :sales_sell_by_user, ->(id_param) { where("seller_id = ?", id_param)}
+  
+  def self.sales_sell_by_user2(param)
+    messas = Sale.sales_sell_by_user(param);
+    messas.each do |message|
+      message.sellertemp = message.seller;
+      message.articletemp = message.article;
+    end
+    messas2 = messas
+    messas2.each { |x| puts x.sellertemp.inspect }
+  end
+  
+  scope :sales_buy_by_user, ->(id_param) { where("buyer_id = ?", id_param)}
+  
+  def self.sales_buy_by_user2(param)
+    messas = Sale.sales_buy_by_user(param);
+    messas.each do |message|
+      message.buyertemp = message.buyer;
+      message.articletemp = message.article;
+    end
+    messas2 = messas
+    messas2.each { |x| puts x.buyertemp.inspect }
+  end  
   
   #Este query nos devuelve las ventas donde los productos tienen un precio igual o mayor que el parámetro de entrada.
   scope :higher_price_than, ->(param) { 
