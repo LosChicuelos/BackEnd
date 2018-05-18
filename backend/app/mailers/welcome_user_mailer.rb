@@ -9,4 +9,14 @@ class WelcomeUserMailer < ApplicationMailer
 		mail to: @user.email, subject: 'Bienvenido a la comunidad de Campo a la Mano.'
 		
   end
+  
+  #En metodo se usa de prueba para el envio de email.
+  def prueba(iduser)
+    
+    @user = User.full_user(iduser).first
+		mail to: @user.email, subject: 'Bienvenido a la comunidad de Campo a la Mano.'
+		
+  end
+  
+  
 end

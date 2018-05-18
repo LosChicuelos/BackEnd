@@ -18,8 +18,11 @@
 #
 
 class Message < ApplicationRecord
-  has_one :sender, :class_name => "User"
-  has_one :receiver, :class_name => "User"
+  
+  attr_accessor :sendertemp, :receivertemp
+  
+  belongs_to :sender, :class_name => "User"
+  belongs_to :receiver, :class_name => "User"
 
   validates :topic, presence: true, length: { minimum: 5, maximum: 50 }
   validates :content, presence: true, length: { minimum: 10, maximum: 500 }
@@ -33,10 +36,28 @@ class Message < ApplicationRecord
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
 
   #Este query nos devuelve los mensajes que a enviado un usurario.
-  scope :Messages_sent_by_user, ->(id_param) { where("sender_id = ?", id_param)}
+  scope :messages_sent_by_user, ->(id_param) { where("sender_id = ?", id_param)}
 
   #Este query nos devuelve los mensajes que a recibido un usurario.
-  scope :Messages_received_by_user, ->(id_param) { where("receiver_id = ?", id_param)}
+  scope :messages_received_by_user, ->(id_param) { where("receiver_id = ?", id_param).includes(:sender)}
+  
+  def self.messages_sent_by_user2(param)
+    messas = Message.messages_sent_by_user(param);
+    messas.each do |message|
+      message.receivertemp = message.receiver
+    end
+    messas2 = messas
+#    messas2.each { |x| puts x.sendertemp }
+  end
+  
+  def self.messages_received_by_user2(param)
+    messas = Message.messages_received_by_user(param);
+    messas.each do |message|
+      message.sendertemp = message.sender
+    end
+    messas2 = messas
+#    messas2.each { |x| puts x.sendertemp }
+  end
 
   scope :belongsuser, ->(id_param) { where("receiver_id = ? or sender_id = ?", id_param,id_param)}
   scope :countexitlastweek, -> {where('created_at >= ?', 1.week.ago).count} 

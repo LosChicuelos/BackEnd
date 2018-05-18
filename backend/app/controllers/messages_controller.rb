@@ -8,16 +8,26 @@ class MessagesController < ApplicationController
   end
   
   def belongsuser
-    puts 'Holaaaa';
-    @messages = Message.belongsuser(params[:user_id])
-    render json: @messages
+    if params[:sender_id] != nil
+      #puts 'sender_id';
+      #puts params[:sender_id];
+      @messages = Message.messages_sent_by_user2(params[:sender_id]);
+    else 
+      #puts 'user_id';
+      #puts params[:user_id];
+      @messages = Message.messages_received_by_user2(params[:user_id]);
+    end
+    #puts 'Hola'
+    #@messages.each { |x| puts x.sendertemp.inspect }
+    #puts @messages.to_json(:methods => %w(sendertemp))
+    render json: @messages.to_json(:methods => %w(sendertemp receivertemp))
   end
 
 def show
     @message = message.find(params[:id])
   end
 
-  # POST /articles
+  # POST /messages
   def create
     @message = Message.new(message_params)
 

@@ -20,7 +20,15 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
       if @user.save
+        
+        puts "mierda"
+        
+        #Con la siguiente linea se envia un correo al nuevo usuario.
+        WelcomeUserMailer.notify(@user).deliver_now  #later(wait: 30.seconds)
+        puts "mierda2"
+        
         render json: @user, status: :created
+
       else
 
       end

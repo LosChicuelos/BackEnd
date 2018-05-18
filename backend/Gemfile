@@ -38,6 +38,14 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'wkhtmltopdf-binary-edge'
 
+#Gemas para solucionar problema con pipeline
+group :assets do
+  gem 'therubyracer'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
+
 gem 'rmagick'
 #Gema para las estadisticas
 gem 'gruff'

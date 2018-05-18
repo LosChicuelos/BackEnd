@@ -18,7 +18,7 @@ class SalesController < ApplicationController
       if @sale.save
         
       #Con la siguiente linea se envia un correo al vendedor, por cada nueva compra.
-      NotifySellerMailer.notify(@sale).deliver_now
+      NotifySellerMailer.notify(@sale).deliver_later(wait: 30.seconds)
       
       render json: @sale, status: :created, location: @sale
       else
