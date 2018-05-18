@@ -10,7 +10,8 @@
   <body>
     <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
-        <td align="left" valign="top"><img src="images/top.jpg" width="600" height="106" style="display:block;"></td>
+
+        <td align="left" valign="top"><img src='file://#{Rails.root.join('public', 'images', 'top.jpg')}' width="600" height="106" style="display:block;"></td>
       </tr>
       <tr>
         <%= yield %>

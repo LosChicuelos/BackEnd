@@ -24,7 +24,12 @@ gem 'puma', '~> 3.7'
 
 ### GEMAS CHICUELOS
 gem 'faker', git: 'https://github.com/stympy/faker'
+
+#Gema para trabajar con Active Job
 gem 'delayed_job_active_record'
+#Gema para manejar la cola de delayed_job
+gem "daemons"
+
 ## Gemfile for Rails 3+, Sinatra, and Merb
 gem 'will_paginate', '~> 3.1.0'
 gem 'annotate', git: 'https://github.com/ctran/annotate_models.git'
@@ -33,23 +38,38 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
 gem 'carrierwave', '~> 1.0'
+
 # Gemas para generar PDF wicked_pdf y wkhtmltopdf-binary
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'wkhtmltopdf-binary-edge'
 
 #Gemas para solucionar problema con pipeline
-group :assets do
-  gem 'therubyracer'
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-end
+#group :assets do
+#  gem 'therubyracer'
+#  gem 'sass-rails'
+#  gem 'coffee-rails'
+#  gem 'uglifier'
+#end
+
+#Gema para trabajar con Active Job
+#gem 'delayed_job_active_record'
 
 gem 'rmagick'
+
 #Gema para las estadisticas
 gem 'gruff'
+
+#Gema para subir imágenes
 gem 'paperclip'
+
+#Gema para tareas Cron
+gem 'whenever', require: false
+
+#Gema para Active Jobs
+#gem 'sidekiq'
+#Gema para el uso de Redis.
+#gem 'redis-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -26,34 +26,18 @@
 class Article < ApplicationRecord
   belongs_to :user
   belongs_to :classification
-  has_many :photos, dependent: :destroy
   has_many :questions
   has_many :sales
 
-  accepts_nested_attributes_for :photos, allow_destroy: true
+  has_attached_file :picture,  styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+
+  validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
 
   validates :name, presence: true, length: { minimum: 5, maximum: 50 }
   validates :description, presence: true, length: { minimum: 5, maximum: 500 }
   validates :inventory, presence: true, numericality: true
   validates :price, presence: true, numericality: true
   
-    def as_json(_opts = {})
-    {
-      id: id,
-      name: name,
-      description: description,
-      price: price,
-      inventory: inventory,
-      image_photos: covers.map do |x|
-        {
-          url: x.photo.url.absolute_url,
-          name: x.photo_file_name,
-          id: x.id
-        }
-      end
-    }
-  end
-
 
   scope :paginatedef, -> (param){
       Article.paginate(:page => param, :per_page => 40)

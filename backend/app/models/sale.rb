@@ -60,6 +60,7 @@ class Sale < ApplicationRecord
     messas2 = messas
     messas2.each { |x| puts x.buyertemp.inspect }
   end  
+
   
   #Este query nos devuelve las ventas donde los productos tienen un precio igual o mayor que el parámetro de entrada.
   scope :higher_price_than, ->(param) { 

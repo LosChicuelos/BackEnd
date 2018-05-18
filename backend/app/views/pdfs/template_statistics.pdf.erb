@@ -5,8 +5,11 @@
   </head>
   <body onload='number_pages'>
     <div id="content">
+      <center><div style="font-family:Georgia, 'Times New Roman', Times, serif; font-size:56px; color:#000000;"><%= @title %><span style="color:#478730;"></span></div></center>
+      <br>
+      <br>
       <div>
-      <%= wicked_pdf_image_tag 'exciting.png' %>
+        <%= image_tag("file://#{Rails.root.join('public', 'images', 'exciting.png')}") %>
     </div>
     </div>
   </body>
