@@ -73,6 +73,8 @@
 #               photos_new GET    /photos/new(.:format)            photos#new
 #              belongsuser GET    /belongsuser(.:format)           articles#belongsuser
 #      messagesbelongsuser GET    /messagesbelongsuser(.:format)   messages#belongsuser
+#         salesbelongsuser GET    /salesbelongsuser(.:format)      sales#belongsuser
+#                   filter GET    /filter(.:format)                articles#filter
 #                          GET    /articles/user/:iduser(.:format) pdfs#show {:format=>/pdf/}
 #                          GET    /statistics/:iduser(.:format)    statistics#show {:format=>/pdf/}
 #                 sessions GET    /sessions(.:format)              sessions#index
@@ -99,6 +101,8 @@ Rails.application.routes.draw do
 
   get '/belongsuser', to: "articles#belongsuser"
   get '/messagesbelongsuser', to: "messages#belongsuser"
+  get '/salesbelongsuser', to: "sales#belongsuser"
+  get '/filter', to: "articles#filter"
   get "/articles/user/:iduser", to: "pdfs#show", format: 'pdf'
   get "/statistics/:iduser", to: "statistics#show", format: 'pdf'
   

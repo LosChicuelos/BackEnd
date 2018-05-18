@@ -66,7 +66,7 @@ class User < ApplicationRecord
     validates :password, presence: true, length: {minimum: 8, maximum: 20}
     
     scope :paginatedef, -> (param){
-        User.paginate(:page => param, :per_page => 6)
+        User.paginate(:page => param, :per_page => 40)
     }
 
     #///////// Querries /////////

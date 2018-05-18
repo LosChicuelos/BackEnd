@@ -139,6 +139,10 @@ class Article < ApplicationRecord
       all
     end
     }
+    
+  def self.search(term)
+    where("name like :term", term: "%#{term}%")
+  end
   #Este query nos devuelve los artículos de un usuario especifico, realizando la búsqueda por nombre.
   scope :belongsuser, ->(param){ joins(:user).where("users.name = ?",param)}
   

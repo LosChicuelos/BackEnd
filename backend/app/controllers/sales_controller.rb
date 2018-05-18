@@ -34,6 +34,15 @@ class SalesController < ApplicationController
       render json: @sale.errors, status: :unprocessable_entity
     end
   end
+  
+  def belongsuser
+    if params[:seller_id] != nil
+      @sales = Sale.sales_sell_by_user2(params[:seller_id]);
+    else 
+      @sales = Sale.sales_buy_by_user2(params[:buyer_id]);
+    end
+    render json: @sales.to_json(:methods => %w(sellertemp buyertemp articletemp))
+  end
 
   # DELETE /articles/:id
   def destroy

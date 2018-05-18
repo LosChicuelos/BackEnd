@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       if @user.save
         render json: @user, status: :created
       else
-        head:(unprocessable_entity)
+
       end
     
   end
