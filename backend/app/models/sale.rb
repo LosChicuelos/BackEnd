@@ -36,6 +36,15 @@ class Sale < ApplicationRecord
   #///////// Querries /////////
   #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
   
+  def self.sale_sent_by_user2(param)
+    messas = Message.messages_sent_by_user(param);
+    messas.each do |message|
+      message.receivertemp = message.receiver
+    end
+    messas2 = messas
+#    messas2.each { |x| puts x.sendertemp }
+  end
+  
   #Este query nos devuelve las ventas donde los productos tienen un precio igual o mayor que el parámetro de entrada.
   scope :higher_price_than, ->(param) { 
     if param != nil
