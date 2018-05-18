@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :update, :destroy]
+  #before_action :set_article, only: [:show, :update, :destroy]
 
   # GET /articles
   def index
@@ -57,20 +57,7 @@ class ArticlesController < ApplicationController
   private
     
   def article_params
-      params.require(:article).permit(
-        [
-          :name, 
-          :description, 
-          :price, 
-          :inventory, 
-          :user_id, 
-          :classification_id,
-          photos_atributes: %I[
-            id
-            photos
-            _destroy
-          ]
-        ]
-      )
+      params.require(:article).permit(:name, :description, :price, :inventory, :user_id, :classification_id, :picture)
   end
+
 end
