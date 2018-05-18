@@ -73,13 +73,13 @@
 #               photos_new GET    /photos/new(.:format)            photos#new
 #              belongsuser GET    /belongsuser(.:format)           articles#belongsuser
 #      messagesbelongsuser GET    /messagesbelongsuser(.:format)   messages#belongsuser
+#         salesbelongsuser GET    /salesbelongsuser(.:format)      sales#belongsuser
 #                          GET    /articles/user/:iduser(.:format) pdfs#show {:format=>/pdf/}
 #                          GET    /statistics/:iduser(.:format)    statistics#show {:format=>/pdf/}
 #                 sessions GET    /sessions(.:format)              sessions#index
 #                          POST   /sessions(.:format)              sessions#create
 #                  session GET    /sessions/:id(.:format)          sessions#show
 #                          DELETE /sessions/:id(.:format)          sessions#destroy
-# 
 
 Rails.application.routes.draw do
   devise_for :users
