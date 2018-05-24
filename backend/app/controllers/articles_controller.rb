@@ -11,9 +11,13 @@ class ArticlesController < ApplicationController
     @articles = Article.belongsuserid(params[:user_id])
     render json: @articles
   end
+  #////////////////////////////////////////////////////////////////////////
   
   def filter
-    @articles = Article.search(params[:search]) unless params[:search].blank?
+    
+    #@articles = Article.higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).created_before(params[:start_date]).created_after(params[:ending_date]).in_the_name(params[:name])
+    @articles = Article.higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).in_the_name(params[:name])
+    
     render json: @articles
   end
 
