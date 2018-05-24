@@ -73,6 +73,9 @@ class User < ApplicationRecord
     #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
 
     #Este query nos devuelve la calificación promedio de un usuario, como vendedor.
+    scope :seller_averange_score, -> (param) { 
+        Sale.sales_per_user(param).joins("INNER JOIN scores ON scores.sale_id = sales.id").average("scores.score")
+    }
 
     #Este query nos devuelve la calificación promedio de un usuario, como comprador.
     scope :buyer_averange_score, -> (param) { 
