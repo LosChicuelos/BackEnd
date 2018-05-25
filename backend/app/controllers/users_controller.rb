@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   # POST /usuarios
   def create
-    puts "------ljlkjlkjlkjlAAAAAAAAAAAAAAAAAAAAAAAA---"
+    
     @user = User.new(user_params)
 
       if @user.save
@@ -25,6 +25,9 @@ class UsersController < ApplicationController
         WelcomeUserMailer.delay.notify(@user)  #later(wait: 30.seconds)
         
         render json: @user, status: :created
+
+      else
+
       end
     
   end
@@ -58,6 +61,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit( :typeuser, :iddocument, :typedocument, :email, :phone, :latitude, :langitude, :password, :password_confirmation)
+      params.require(:user).permit(:name, :lastname, :typeuser, :iddocument, :typedocument, :email, :phone, :latitude, :langitude, :password, :password_confirmation)
     end
 end

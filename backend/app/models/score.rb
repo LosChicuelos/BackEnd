@@ -37,5 +37,29 @@ class Score < ApplicationRecord
   scope :higherthan, -> (param) { where("score > ?",param)}
   
   scope :counthigherthan, -> (param) { where("score > ?",param).count} 
+  
+  #Este query nos devuelve las calificaciones creadas antes de una fecha.
+  scope :created_before, ->(param) { 
+    if param != nil
+      where("scores.created_at <= ?", param)
+    else
+      all
+    end
+    }
+  #Este query nos devuelve las calificaciones creadas despues de una fecha.
+  scope :created_after, ->(param) { 
+    if param != nil
+      where("scores.created_at >= ?", param)
+    else
+      all
+    end
+    }
+  #Para obtener las calificaciones creadas entre un rango de fechas, solo se necesita anidar los 2 queries anteriores.
+  
+  #Este query nos devuelve las calificaciones como comprador de un usuario especifico, realizando la búsqueda por id.
+  scope :buyer_belongsuserid, ->(param){ where(" qualified_id = ?",param)}
+  
+  #Este query nos agrupa por rango de calificaciones.
+  scope :group_rank, -> { group('score / 1')}
 
 end

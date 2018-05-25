@@ -11,6 +11,15 @@ class ArticlesController < ApplicationController
     @articles = Article.belongsuserid(params[:user_id])
     render json: @articles
   end
+  #////////////////////////////////////////////////////////////////////////
+  
+  def filter
+    
+    #@articles = Article.higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).created_before(params[:start_date]).created_after(params[:ending_date]).in_the_name(params[:name])
+    @articles = Article.higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).in_the_name(params[:name])
+    
+    render json: @articles
+  end
 
  # GET /articles/:id
   def show
@@ -32,7 +41,6 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)  
     
     if @article.save
-      redirect_to @article
     else
       render :new
     end
@@ -40,10 +48,10 @@ class ArticlesController < ApplicationController
 
   # PUT /articles/:id
   def update
-      @article = article.find(params[:id])
-      if @article.update(alliance_params)
-        redirect_to @article
-      else
+    @article = article.find(params[:id])
+    if @article.update(alliance_params)
+      redirect_to @article
+    else
       render :edit
     end
   end

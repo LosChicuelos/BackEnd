@@ -21,7 +21,9 @@ class Alliance < ApplicationRecord
   has_one :applicant, :class_name => "User"
 
   validates :commentary, presence: true, length: { minimum: 5, maximum: 500 }
-  validates :confirm, length: { minimum: 2, maximum: 8 }
+  validates :confirm, length: { minimum: 2, maximum: 10 }
+  validates :applicant_id, presence: true
+  validates :approval_id,  presence: true
   
     
   scope :paginatedef, -> (param){
@@ -43,8 +45,9 @@ class Alliance < ApplicationRecord
   #Este query nos devuelve las alianzas creadas antes de una fecha.
   scope :created_after, ->(time) { where("created_at > ?", time)}
   #Para obtener alianzas entre un rango de fechas, solo se necesita anidar los 2 queries anteriores.
+  
+  scope :belongsuser, ->(id_param) { where("(approval_id = ? or applicant_id = ?) and confirm = 'SI'", id_param,id_param)}
 
-=begin
   #Se deja en este comentaro multiple los querries anteriores
   def self.withsale
     joins("
@@ -65,5 +68,4 @@ class Alliance < ApplicationRecord
       OR (sales.seller_id = userapproval.id AND sales.buyer_id = userapplicant.id)"
     ).count()
   end 
-=end 
 end

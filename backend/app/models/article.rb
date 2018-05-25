@@ -33,10 +33,10 @@ class Article < ApplicationRecord
 
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
 
-  #validates :name, presence: true, length: { minimum: 5, maximum: 50 }
-  #validates :description, presence: true, length: { minimum: 5, maximum: 500 }
-  #validates :inventory, presence: true, numericality: true
-  #validates :price, presence: true, numericality: true
+  validates :name, presence: true, length: { minimum: 5, maximum: 50 }
+  validates :description, presence: true, length: { minimum: 5, maximum: 500 }
+  validates :inventory, presence: true, numericality: true
+  validates :price, presence: true, numericality: true
   
 
   scope :paginatedef, -> (param){
@@ -58,7 +58,7 @@ class Article < ApplicationRecord
   #Este query nos devuelve los productos que tienen un precio igual o mayor que el parámetro de entrada.
   scope :higher_price_than, ->(param) { 
     if param != nil
-      where("price >= ?", param)
+      where("price <= ?", param)
     else
       all
     end
@@ -66,7 +66,7 @@ class Article < ApplicationRecord
   #Este query nos devuelve los productos que tienen un precio igual o menor que el parámetro de entrada.
   scope :lower_price_than, ->(param) { 
     if param != nil
-      where("price <= ?", param)
+      where("price >= ?", param)
     else
       all
     end
@@ -123,8 +123,17 @@ class Article < ApplicationRecord
       all
     end
     }
+    
+  def self.search(term)
+    where("name like :term", term: "%#{term}%")
+  end
   #Este query nos devuelve los artículos de un usuario especifico, realizando la búsqueda por nombre.
   scope :belongsuser, ->(param){ joins(:user).where("users.name = ?",param)}
+  
+  #Este query nos devuelve la calificación promedio de un articulo, segun los que ya se han vendido, lo busca por id de articulo.
+  scope :buyer_averange_score, -> (param) { 
+      Sale.sales_per_article(param).joins("INNER JOIN scores ON scores.sale_id = sales.id").average("scores.score")
+  }
   
   #Este query nos devuelve el id de usuario del vendedor, lo busca por id del articulo.
   scope :id_user_seller, -> (param) { select("user_id").where("id == ?", param)}
