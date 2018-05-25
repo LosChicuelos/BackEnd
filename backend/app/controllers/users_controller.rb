@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   # POST /usuarios
   def create
-    puts "------ljlkjlkjlkjlAAAAAAAAAAAAAAAAAAAAAAAA---"
+    
     @user = User.new(user_params)
 
       if @user.save
