@@ -165,7 +165,7 @@
 #                          POST   /sessions(.:format)                 sessions#create
 #                  session GET    /sessions/:id(.:format)             sessions#show
 #                          DELETE /sessions/:id(.:format)             sessions#destroy
-#>>>>>>> e23a1aec888ab387632e513dfb5ae1bd1db4cd22
+
 
 Rails.application.routes.draw do
   devise_for :users
@@ -192,6 +192,7 @@ Rails.application.routes.draw do
   get "/statistics/:iduser", to: "statistics#show", format: 'pdf'
   #Ruta general para renderizar estadisticas
   get "/statistics/new/:idstatistics", to: "statistics#show_all", format: 'pdf'
+  get "/confirmation/:iduser", to: "statistics#show_all", format: 'pdf'
   
 
   resources :sessions, only: [:create, :destroy, :show, :index]
