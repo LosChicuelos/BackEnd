@@ -58,7 +58,7 @@ class Article < ApplicationRecord
   #Este query nos devuelve los productos que tienen un precio igual o mayor que el parámetro de entrada.
   scope :higher_price_than, ->(param) { 
     if param != nil
-      where("price >= ?", param)
+      where("price <= ?", param)
     else
       all
     end
@@ -66,7 +66,7 @@ class Article < ApplicationRecord
   #Este query nos devuelve los productos que tienen un precio igual o menor que el parámetro de entrada.
   scope :lower_price_than, ->(param) { 
     if param != nil
-      where("price <= ?", param)
+      where("price >= ?", param)
     else
       all
     end

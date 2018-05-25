@@ -54,16 +54,7 @@ class User < ApplicationRecord
     has_many :approvals, :class_name => "Alliance", :foreign_key => "approval_id"
     has_many :applicants, :class_name => "Alliance", :foreign_key => "applicant_id"
 
-    VALID_EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
-    validates :name, presence: true, length: {maximum: 30}
-    validates :lastname, presence: true, length: {maximum: 30}
-    validates :iddocument, presence: true, length: {minimum: 10, maximum: 20}
-    validates :typedocument, presence: true, length: {maximum: 20}
-    validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
-    validates :latitude, presence: true, length: {minimum: 5, maximum: 30}
-    validates :langitude, presence: true, length: {minimum: 5, maximum: 30}
-    validates :password, presence: true, length: {minimum: 8, maximum: 20}
     
     scope :paginatedef, -> (param){
         User.paginate(:page => param, :per_page => 40)
@@ -72,31 +63,17 @@ class User < ApplicationRecord
     #///////// Querries /////////
     #En la siguiente sección se implementaran todos los queries de este modelo (métodos y scope).
 
-    #Este query nos devuelve la calificación promedio de un usuario, como vendedor, lo busca por id de usuario.
+    #Este query nos devuelve la calificación promedio de un usuario, como vendedor.
     scope :seller_averange_score, -> (param) { 
-       # if param != nil
         Sale.sales_per_user(param).joins("INNER JOIN scores ON scores.sale_id = sales.id").average("scores.score")
-        #else
-        #  all
-        #end
     }
-=begin
-    #Este query nos devuelve la calificación promedio de un usuario, como vendedor, lo busca por id de usuario.
-    scope :seller_averange_score, -> (param) { 
-        if param != nil
-          Sale.sales_per_user(param).joins("INNER JOIN scores ON scores.sale_id = sales.id").average("scores.score")
-        else
-          all
-        end
-    }
-=end
 
-    #Este query nos devuelve la calificación promedio de un usuario, como comprador, lo busca por id de usuario.
+    #Este query nos devuelve la calificación promedio de un usuario, como comprador.
     scope :buyer_averange_score, -> (param) { 
         Sale.purchases_per_user(param).joins("INNER JOIN scores ON scores.sale_id = sales.id").average("scores.score")
     }
 
-    #Este query nos devuelve la cantidad calificación de un usuario, como comprador, lo busca por id de usuario.
+    #Este query nos devuelve la cantidad calificación de un usuario, como comprador.
     scope :count_score, -> (param) { 
         Sale.purchases_per_user(param).joins("INNER JOIN scores ON scores.sale_id = sales.id").count
     }

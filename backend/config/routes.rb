@@ -73,6 +73,7 @@
 #               photos_new GET    /photos/new(.:format)                   photos#new
 #              belongsuser GET    /belongsuser(.:format)                  articles#belongsuser
 #      messagesbelongsuser GET    /messagesbelongsuser(.:format)          messages#belongsuser
+#     alliancesbelongsuser GET    /alliancesbelongsuser(.:format)         alliances#belongsuser
 #         salesbelongsuser GET    /salesbelongsuser(.:format)             sales#belongsuser
 #                   filter GET    /filter(.:format)                       articles#filter
 #                          GET    /articles/user/:iduser(.:format)        pdfs#show {:format=>/pdf/}
