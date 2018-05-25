@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
  # GET /articles/:id
   def show
     @article = Article.find(params[:id])
+    render json: @article
   end
 
   # GET /articles/new

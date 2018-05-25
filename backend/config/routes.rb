@@ -95,7 +95,9 @@ Rails.application.routes.draw do
   resources :users
   resources :classifications, except: [:destroy]
 
-  get "photos/new", to: "photos#new"
+
+  get "articles/new", to: "articles#new"
+  post "photos/new", to: "photos#new"
 
   get '/belongsuser', to: "articles#belongsuser"
   get '/messagesbelongsuser', to: "messages#belongsuser"
