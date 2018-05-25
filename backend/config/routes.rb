@@ -184,6 +184,7 @@ Rails.application.routes.draw do
 
   get '/belongsuser', to: "articles#belongsuser"
   get '/messagesbelongsuser', to: "messages#belongsuser"
+  get '/alliancesbelongsuser', to: "alliances#belongsuser"
   get '/salesbelongsuser', to: "sales#belongsuser"
   get '/filter', to: "articles#filter"
   get "/articles/user/:iduser", to: "pdfs#show", format: 'pdf'
