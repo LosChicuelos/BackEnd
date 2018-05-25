@@ -130,6 +130,11 @@ class Article < ApplicationRecord
   #Este query nos devuelve los artículos de un usuario especifico, realizando la búsqueda por nombre.
   scope :belongsuser, ->(param){ joins(:user).where("users.name = ?",param)}
   
+  #Este query nos devuelve la calificación promedio de un articulo, segun los que ya se han vendido, lo busca por id de articulo.
+  scope :buyer_averange_score, -> (param) { 
+      Sale.sales_per_article(param).joins("INNER JOIN scores ON scores.sale_id = sales.id").average("scores.score")
+  }
+  
   #Este query nos devuelve el id de usuario del vendedor, lo busca por id del articulo.
   scope :id_user_seller, -> (param) { select("user_id").where("id == ?", param)}
   
