@@ -33,10 +33,10 @@ class Article < ApplicationRecord
 
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
 
-  validates :name, presence: true, length: { minimum: 5, maximum: 50 }
-  validates :description, presence: true, length: { minimum: 5, maximum: 500 }
-  validates :inventory, presence: true, numericality: true
-  validates :price, presence: true, numericality: true
+  # validates :name, presence: true, length: { maximum: 50 }
+  # validates :description, presence: true, length: { maximum: 500 }
+  # validates :inventory, presence: true, numericality: true
+  # validates :price, presence: true, numericality: true
   
 
   scope :paginatedef, -> (param){
