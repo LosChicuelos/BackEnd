@@ -79,6 +79,8 @@
 #                          GET    /articles/user/:iduser(.:format)        pdfs#show {:format=>/pdf/}
 #                          GET    /statistics/:iduser(.:format)           statistics#show {:format=>/pdf/}
 #                          GET    /statistics/new/:idstatistics(.:format) statistics#show_all {:format=>/pdf/}
+#                          GET    /confirmation/:iduser(.:format)         users#confirmation
+#                          GET    /login/:email(.:format)                 users#emailverification
 #                 sessions GET    /sessions(.:format)                     sessions#index
 #                          POST   /sessions(.:format)                     sessions#create
 #                  session GET    /sessions/:id(.:format)                 sessions#show
@@ -191,10 +193,14 @@ Rails.application.routes.draw do
   get '/salesbelongsuser', to: "sales#belongsuser"
   get '/filter', to: "articles#filter"
   get "/articles/user/:iduser", to: "pdfs#show", format: 'pdf'
+  #Ruta para renderizar estadistica de articulos publicados
   get "/statistics/:iduser", to: "statistics#show", format: 'pdf'
   #Ruta general para renderizar estadisticas
   get "/statistics/new/:idstatistics", to: "statistics#show_all", format: 'pdf'
-  get "/confirmation/:iduser", to: "statistics#show_all", format: 'pdf'
+  #Ruta para la confirmacion de registro de un usuario nuevo.
+  get "/confirmation/:iduser", to: "users#confirmation"
+  #Ruta para verificacion de de redes sociales.
+  get "/login/:email", to: "users#emailverification"
   
 
   resources :sessions, only: [:create, :destroy, :show, :index]
