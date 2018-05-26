@@ -6,4 +6,5 @@ class AddPictureToArticles < ActiveRecord::Migration[5.1]
   def down
   	remove_attachment :articles, :picture
   end
+
 end
