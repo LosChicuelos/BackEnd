@@ -135,12 +135,24 @@ class Article < ApplicationRecord
       Sale.sales_per_article(param).joins("INNER JOIN scores ON scores.sale_id = sales.id").average("scores.score")
   }
   
+  #Este query nos devuelve la calificación promedio como vendedor, del vendedor del articulo, realizando la busqueda por id de articulo.
+  scope :seller_averange_score, -> (param) { 
+      User.seller_averange_score(Article.find(param).user_id)
+  }
+  
   #Este query nos devuelve el id de usuario del vendedor, lo busca por id del articulo.
-  scope :id_user_seller, -> (param) { select("user_id").where("id == ?", param)}
+  scope :id_user_seller, -> (param) { Article.find(param).user_id}
   
   #Este query nos agrupa por mes.
   scope :group_month, -> { group('strftime("%m", articles.created_at)')}
-  
+
+=begin  
+  #Este query nos devuelve los articulos en los cuales su publicador tiene una calificacion minima, realizando la busqueda el valor de dicha calificacion.
+  def self.by_score_seller(param) 
+      articlebd = self.all
+      #User.seller_averange_score(Article.find(param).user_id)
+  end
+=end
   #Prueba de anidacion de querries, esta funcion debe ser borrada mas adelante
   def self.prueba(param)
     puts "line de prueba 1 ---------------------------"
