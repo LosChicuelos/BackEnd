@@ -79,6 +79,7 @@
 #                          GET    /articles/user/:iduser(.:format)        pdfs#show {:format=>/pdf/}
 #                          GET    /statistics/:iduser(.:format)           statistics#show {:format=>/pdf/}
 #                          GET    /statistics/new/:idstatistics(.:format) statistics#show_all {:format=>/pdf/}
+#                          GET    /confirmation/:iduser(.:format)         statistics#show_all {:format=>/pdf/}
 #                 sessions GET    /sessions(.:format)                     sessions#index
 #                          POST   /sessions(.:format)                     sessions#create
 #                  session GET    /sessions/:id(.:format)                 sessions#show

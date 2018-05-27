@@ -57,7 +57,7 @@ class User < ApplicationRecord
 
     
     scope :paginatedef, -> (param){
-        User.paginate(:page => param, :per_page => 40)
+        User.paginate(:page => param, :per_page => 12)
     }
 
     #///////// Querries /////////

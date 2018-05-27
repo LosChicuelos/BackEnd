@@ -39,8 +39,8 @@ class Article < ApplicationRecord
   validates :price, presence: true, numericality: true
   
 
-  scope :paginatedef, -> (param){
-      Article.paginate(:page => param, :per_page => 40)
+  scope :paginatedef, -> (page,page_size){
+      Article.paginate(:page => page, :per_page => page_size)
   }
   
   scope :fivebestsellercantitybyuser, ->(userid){
@@ -136,7 +136,7 @@ class Article < ApplicationRecord
   }
   
   #Este query nos devuelve el id de usuario del vendedor, lo busca por id del articulo.
-  scope :id_user_seller, -> (param) { select("user_id").where("id == ?", param)}
+  scope :id_user_seller, -> (param) { where("id == ?", param)}
   
   #Este query nos agrupa por mes.
   scope :group_month, -> { group('strftime("%m", articles.created_at)')}
