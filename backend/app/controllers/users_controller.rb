@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    render json: @users
   end
 
   # POST /usuarios
@@ -49,9 +50,9 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
-# Con este metodo recibimos la confirmacion del email del usuario
+# Con este metodo recibimos la confirmacion del email del usuario.
   def confirmation
-    @user = User.full_user(params[:iduser])
+    @user = User.find_by(params[:iduser])
     @user.confirmation = true
     
     if @user.save

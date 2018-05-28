@@ -48,11 +48,10 @@ class ArticlesController < ApplicationController
 
   # PUT /articles/:id
   def update
-    @article = article.find(params[:id])
-    if @article.update(alliance_params)
-      redirect_to @article
-    else
-      render :edit
+    @article = Article.find(params[:id])
+    puts article_params
+    if @article.update(article_params)
+      render json: @article
     end
   end
 

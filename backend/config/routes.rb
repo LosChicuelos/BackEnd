@@ -70,7 +70,8 @@
 #           classification GET    /classifications/:id(.:format)          classifications#show
 #                          PATCH  /classifications/:id(.:format)          classifications#update
 #                          PUT    /classifications/:id(.:format)          classifications#update
-#               photos_new GET    /photos/new(.:format)                   photos#new
+#             articles_new GET    /articles/new(.:format)                 articles#new
+#               photos_new POST   /photos/new(.:format)                   photos#new
 #              belongsuser GET    /belongsuser(.:format)                  articles#belongsuser
 #      messagesbelongsuser GET    /messagesbelongsuser(.:format)          messages#belongsuser
 #     alliancesbelongsuser GET    /alliancesbelongsuser(.:format)         alliances#belongsuser
@@ -198,9 +199,9 @@ Rails.application.routes.draw do
   #Ruta general para renderizar estadisticas
   get "/statistics/new/:idstatistics", to: "statistics#show_all", format: 'pdf'
   #Ruta para la confirmacion de registro de un usuario nuevo.
-  get "/confirmation/:iduser", to: "users#confirmation"
+  get "/confirmation", to: "users#confirmation"
   #Ruta para verificacion de de redes sociales.
-  get "/login/:email", to: "users#emailverification"
+  get "/login", to: "users#emailverification"
   
 
   resources :sessions, only: [:create, :destroy, :show, :index]
