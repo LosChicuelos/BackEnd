@@ -8,7 +8,18 @@ class AlliancesController < ApplicationController
   end
   
   def belongsuser
-    @alliances = Alliance.belongsuser(params[:user_id])
+    puts params[:user_id]
+    puts 'hola1'
+    if params[:confirmyes] != nil
+        puts 'hola2'
+        @alliances = Alliance.belongsuserpending(params[:user_id])
+        puts 'hola3'
+    else if params[:confirmno] != nil
+        @alliances = Alliance.belongsuseronhold(params[:user_id])
+    else 
+        @alliances = Alliance.belongsuser(params[:user_id])
+    end 
+    end
     render json: @alliances
   end
 

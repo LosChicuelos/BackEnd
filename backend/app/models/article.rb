@@ -39,8 +39,8 @@ class Article < ApplicationRecord
   # validates :price, presence: true, numericality: true
   
 
-  scope :paginatedef, -> (param){
-      Article.paginate(:page => param, :per_page => 40)
+  scope :paginatedef, -> (page,page_size){
+      Article.paginate(:page => page, :per_page => page_size)
   }
   
   scope :fivebestsellercantitybyuser, ->(userid){
@@ -126,6 +126,9 @@ class Article < ApplicationRecord
     
   def self.search(term)
     where("name like :term", term: "%#{term}%")
+  end
+  def self.pages(page_size)
+    return (Article.all.length)/(page_size.to_i)
   end
   #Este query nos devuelve los artículos de un usuario especifico, realizando la búsqueda por nombre.
   scope :belongsuser, ->(param){ joins(:user).where("users.name = ?",param)}
