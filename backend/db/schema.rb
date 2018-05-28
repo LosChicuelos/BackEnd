@@ -7,18 +7,18 @@
 # system, you should be using db:schema:load, not running all the migrations
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
-# comentario
+#
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180526173016) do
+ActiveRecord::Schema.define(version: 20180528152943) do
 
   create_table "alliances", force: :cascade do |t|
     t.text "commentary"
     t.string "confirm"
+    t.integer "approval_id"
+    t.integer "applicant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "applicant_id"
-    t.integer "approval_id"
     t.index ["applicant_id"], name: "index_alliances_on_applicant_id"
     t.index ["approval_id"], name: "index_alliances_on_approval_id"
   end
@@ -36,27 +36,9 @@ ActiveRecord::Schema.define(version: 20180526173016) do
     t.string "picture_content_type"
     t.integer "picture_file_size"
     t.datetime "picture_updated_at"
+    t.decimal "score_article"
     t.index ["classification_id"], name: "index_articles_on_classification_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
-  end
-
-  create_table "authentications", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "authentication_token", limit: 30
-    t.index ["authentication_token"], name: "index_authentications_on_authentication_token", unique: true
-    t.index ["email"], name: "index_authentications_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_authentications_on_reset_password_token", unique: true
   end
 
   create_table "classifications", force: :cascade do |t|
@@ -166,6 +148,7 @@ ActiveRecord::Schema.define(version: 20180526173016) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "confirmation"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
