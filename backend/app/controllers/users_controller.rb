@@ -12,17 +12,20 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    render json: @users
   end
 
   # POST /usuarios
   def create
     
     @user = User.new(user_params)
+    @user.confirmation = false
 
       if @user.save
         
-        #Con la siguiente linea se envia un correo al nuevo usuario.
-        WelcomeUserMailer.delay.notify(@user)  #later(wait: 30.seconds)
+        #Con la siguiente linea se envia un correo de confirmacion de email, al nuevo usuario.
+        #WelcomeUserMailer.delay.notify(@user)  #later(wait: 30.seconds)
+        WelcomeUserMailer.confirmation(@user).deliver_now
         
         render json: @user, status: :created
 
@@ -45,6 +48,25 @@ class UsersController < ApplicationController
   # DELETE /articles/:id
   def destroy
     @user.destroy
+  end
+
+# Con este metodo recibimos la confirmacion del email del usuario.
+  def confirmation
+    @user = User.find_by(params[:iduser])
+    @user.confirmation = true
+    
+    if @user.save
+        
+        #Con la siguiente linea se envia un correo de bienvenida al nuevo usuario.
+        #WelcomeUserMailer.delay.notify(@user)  #later(wait: 30.seconds)
+        WelcomeUserMailer.notify(@user).deliver_now
+        
+        render json: @user.confirmation
+
+    else
+        @user.confirmation = false
+        render json: @user.confirmation
+    end
   end
   
 # Con este metodo enviamos la verificacion de si existe un usuario con el correo enviado como parametro

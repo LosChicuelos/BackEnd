@@ -87,6 +87,9 @@ class User < ApplicationRecord
     #Este query nos devuelve toda la informacion de un usuario, lo busca por id.
     scope :full_user, -> (param) { where("id == ?", param)}
     
+    #Este query nos devuelve true si el usuario ya esta logueado, lo busca por id de usuario.
+    scope :user_confirmation, -> (param) { User.find(param).confirmation}
+    
     #Este query nos agrupa por mes.
     scope :group_month, -> { group('strftime("%m", users.created_at)')}
 

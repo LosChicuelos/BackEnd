@@ -70,7 +70,8 @@
 #           classification GET    /classifications/:id(.:format)          classifications#show
 #                          PATCH  /classifications/:id(.:format)          classifications#update
 #                          PUT    /classifications/:id(.:format)          classifications#update
-#               photos_new GET    /photos/new(.:format)                   photos#new
+#             articles_new GET    /articles/new(.:format)                 articles#new
+#               photos_new POST   /photos/new(.:format)                   photos#new
 #              belongsuser GET    /belongsuser(.:format)                  articles#belongsuser
 #         belongsuserpages GET    /belongsuserpages(.:format)             articles#belongsuserpages
 #      messagesbelongsuser GET    /messagesbelongsuser(.:format)          messages#belongsuser
@@ -80,6 +81,8 @@
 #                          GET    /articles/user/:iduser(.:format)        pdfs#show {:format=>/pdf/}
 #                          GET    /statistics/:iduser(.:format)           statistics#show {:format=>/pdf/}
 #                          GET    /statistics/new/:idstatistics(.:format) statistics#show_all {:format=>/pdf/}
+#                          GET    /confirmation/:iduser(.:format)         users#confirmation
+#                          GET    /login/:email(.:format)                 users#emailverification
 #                          GET    /confirmation/:iduser(.:format)         statistics#show_all {:format=>/pdf/}
 #                    pages GET    /pages(.:format)                        articles#pages
 #                 sessions GET    /sessions(.:format)                     sessions#index
@@ -101,7 +104,9 @@ Rails.application.routes.draw do
   resources :users
   resources :classifications, except: [:destroy]
 
-  get "photos/new", to: "photos#new"
+
+  get "articles/new", to: "articles#new"
+  post "photos/new", to: "photos#new"
 
   get '/belongsuser', to: "articles#belongsuser"
   get '/belongsuserpages', to: "articles#belongsuserpages"
@@ -110,9 +115,14 @@ Rails.application.routes.draw do
   get '/salesbelongsuser', to: "sales#belongsuser"
   get '/filter', to: "articles#filter"
   get "/articles/user/:iduser", to: "pdfs#show", format: 'pdf'
+  #Ruta para renderizar estadistica de articulos publicados
   get "/statistics/:iduser", to: "statistics#show", format: 'pdf'
   #Ruta general para renderizar estadisticas
   get "/statistics/new/:idstatistics", to: "statistics#show_all", format: 'pdf'
+  #Ruta para la confirmacion de registro de un usuario nuevo.
+  get "/confirmation", to: "users#confirmation"
+  #Ruta para verificacion de de redes sociales.
+  get "/login", to: "users#emailverification"
   get "/confirmation/:iduser", to: "statistics#show_all", format: 'pdf'
   get "/pages", to: "articles#pages"
   

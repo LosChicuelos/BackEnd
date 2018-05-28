@@ -10,6 +10,14 @@ class WelcomeUserMailer < ApplicationMailer
 		
   end
   
+  #En este metodo recibimos el nuevo usuario al que se le enviara el email.
+  def confirmation(user)
+    
+    @user = user
+		mail to: @user.email, subject: 'Confirmación de registro.'
+		
+  end
+  
   #En metodo se usa de prueba para el envio de email.
   def prueba(iduser)
     

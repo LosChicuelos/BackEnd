@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles
   def index
-    @articles = Article.paginatedef(params[:page],params[:page_size])
+    @articles = Article.paginatedef(params[:page])
     render json: @articles
   end
   
@@ -17,15 +17,10 @@ class ArticlesController < ApplicationController
   end
   #////////////////////////////////////////////////////////////////////////
   
-  def pages
-    @number = Article.pages(params[:page_size])
-    render json: @number
-  end
-  
   def filter
     
     #@articles = Article.higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).created_before(params[:start_date]).created_after(params[:ending_date]).in_the_name(params[:name])
-    @articles = Article.higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).in_the_name(params[:name]).paginatedef(params[:page],params[:page_size])
+    @articles = Article.higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).in_the_name(params[:name])
     
     render json: @articles
   end
@@ -57,11 +52,10 @@ class ArticlesController < ApplicationController
 
   # PUT /articles/:id
   def update
-    @article = article.find(params[:id])
-    if @article.update(alliance_params)
-      redirect_to @article
-    else
-      render :edit
+    @article = Article.find(params[:id])
+    puts article_params
+    if @article.update(article_params)
+      render json: @article
     end
   end
 
