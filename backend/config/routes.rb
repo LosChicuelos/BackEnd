@@ -72,6 +72,7 @@
 #                          PUT    /classifications/:id(.:format)          classifications#update
 #               photos_new GET    /photos/new(.:format)                   photos#new
 #              belongsuser GET    /belongsuser(.:format)                  articles#belongsuser
+#         belongsuserpages GET    /belongsuserpages(.:format)             articles#belongsuserpages
 #      messagesbelongsuser GET    /messagesbelongsuser(.:format)          messages#belongsuser
 #     alliancesbelongsuser GET    /alliancesbelongsuser(.:format)         alliances#belongsuser
 #         salesbelongsuser GET    /salesbelongsuser(.:format)             sales#belongsuser
@@ -103,6 +104,7 @@ Rails.application.routes.draw do
   get "photos/new", to: "photos#new"
 
   get '/belongsuser', to: "articles#belongsuser"
+  get '/belongsuserpages', to: "articles#belongsuserpages"
   get '/messagesbelongsuser', to: "messages#belongsuser"
   get '/alliancesbelongsuser', to: "alliances#belongsuser"
   get '/salesbelongsuser', to: "sales#belongsuser"

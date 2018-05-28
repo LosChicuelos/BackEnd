@@ -8,7 +8,11 @@ class ArticlesController < ApplicationController
   end
   
   def belongsuser
-    @articles = Article.belongsuserid(params[:user_id])
+    @articles = Article.belongsuserid(params[:user_id]).paginatedef(params[:page],params[:page_size])
+    render json: @articles
+  end
+  def belongsuserpages
+    @articles = Article.belongsuseridpages(params[:user_id], params[:page_size])
     render json: @articles
   end
   #////////////////////////////////////////////////////////////////////////

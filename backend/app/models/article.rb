@@ -114,7 +114,13 @@ class Article < ApplicationRecord
     end
     }
   #Para obtener los artículos entre un rango de fechas, solo se necesita anidar los 2 queries anteriores.
-  
+  scope :belongsuseridpages, ->(param,page_size){ 
+    if param != nil
+      joins(:user).where("users.id = ?",param).length/(page_size.to_d)
+    else
+      all
+    end
+    }
   #Este query nos devuelve los artículos de un usuario especifico, realizando la búsqueda por id de usuario.
   scope :belongsuserid, ->(param){ 
     if param != nil
@@ -128,7 +134,7 @@ class Article < ApplicationRecord
     where("name like :term", term: "%#{term}%")
   end
   def self.pages(page_size)
-    return (Article.all.length)/(page_size.to_i)
+    return (Article.all.length)/(page_size.to_f)
   end
   #Este query nos devuelve los artículos de un usuario especifico, realizando la búsqueda por nombre.
   scope :belongsuser, ->(param){ joins(:user).where("users.name = ?",param)}
