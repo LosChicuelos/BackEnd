@@ -61,18 +61,24 @@ class UsersController < ApplicationController
         #WelcomeUserMailer.delay.notify(@user)  #later(wait: 30.seconds)
         WelcomeUserMailer.notify(@user).deliver_now
         
-        render json: { id: @user.id, rta: true}
+        render json: @user
 
     else
         @user.confirmation = false
-        render json: { id: @user.id, rta: false}
+        render json: @user
     end
   end
   
 # Con este metodo enviamos la verificacion de si existe un usuario con el correo enviado como parametro
   def emailverification
     @user = User.email_verification(params[:email])
-    render json: @user
+    
+    if @user
+      @idUser= User.id_user(params[:email])
+      render json: { id: @idUser[0].id, rta: @user}
+    else
+      render json: { id: nil, rta: @user}
+    end
   end
   
   private
