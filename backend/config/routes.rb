@@ -80,13 +80,10 @@
 #                          GET    /articles/user/:iduser(.:format)        pdfs#show {:format=>/pdf/}
 #                          GET    /statistics/:iduser(.:format)           statistics#show {:format=>/pdf/}
 #                          GET    /statistics/new/:idstatistics(.:format) statistics#show_all {:format=>/pdf/}
-<<<<<<< HEAD
 #                          GET    /confirmation/:iduser(.:format)         users#confirmation
 #                          GET    /login/:email(.:format)                 users#emailverification
-=======
 #                          GET    /confirmation/:iduser(.:format)         statistics#show_all {:format=>/pdf/}
 #                    pages GET    /pages(.:format)                        articles#pages
->>>>>>> 500d780be770e890b33c38a05da2dfed0b734b48
 #                 sessions GET    /sessions(.:format)                     sessions#index
 #                          POST   /sessions(.:format)                     sessions#create
 #                  session GET    /sessions/:id(.:format)                 sessions#show

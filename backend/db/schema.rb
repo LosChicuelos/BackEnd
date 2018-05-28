@@ -7,14 +7,10 @@
 # system, you should be using db:schema:load, not running all the migrations
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
-#
+# comentario
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180526173016) do
-=======
-ActiveRecord::Schema.define(version: 20180518062957) do
->>>>>>> 500d780be770e890b33c38a05da2dfed0b734b48
 
   create_table "alliances", force: :cascade do |t|
     t.text "commentary"
