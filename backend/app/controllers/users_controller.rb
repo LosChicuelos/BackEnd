@@ -61,11 +61,11 @@ class UsersController < ApplicationController
         #WelcomeUserMailer.delay.notify(@user)  #later(wait: 30.seconds)
         WelcomeUserMailer.notify(@user).deliver_now
         
-        render json: @user.confirmation
+        render json: @user
 
     else
         @user.confirmation = false
-        render json: @user.confirmation
+        render json: @user
     end
   end
   
