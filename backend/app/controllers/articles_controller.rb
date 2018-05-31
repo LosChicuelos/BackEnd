@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles
   def index
-    @articles = Article.paginatedef(params[:page])
+    @articles = Article.paginatedef(params[:page],params[:page_size])
     render json: @articles
   end
   
@@ -14,6 +14,10 @@ class ArticlesController < ApplicationController
   def belongsuserpages
     @articles = Article.belongsuseridpages(params[:user_id], params[:page_size])
     render json: @articles
+  end
+  def pages
+    @pages = Article.pages(params[:page_size])
+    render json: @pages
   end
   #////////////////////////////////////////////////////////////////////////
   
