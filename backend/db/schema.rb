@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180526173016) do
+ActiveRecord::Schema.define(version: 20180528152943) do
 
   create_table "alliances", force: :cascade do |t|
     t.text "commentary"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20180526173016) do
     t.string "picture_content_type"
     t.integer "picture_file_size"
     t.datetime "picture_updated_at"
+    t.decimal "score_article"
     t.index ["classification_id"], name: "index_articles_on_classification_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end

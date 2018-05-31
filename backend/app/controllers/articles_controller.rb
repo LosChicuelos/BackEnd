@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
   def filter
     
     #@articles = Article.higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).created_before(params[:start_date]).created_after(params[:ending_date]).in_the_name(params[:name])
-    @articles = Article.higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).in_the_name(params[:name])
+    @articles = Article.higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).in_the_name(params[:name]).article_averange_score(params[:qualification])
     
     render json: @articles
   end

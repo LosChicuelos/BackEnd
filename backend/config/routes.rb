@@ -122,6 +122,7 @@ Rails.application.routes.draw do
   get "/confirmation", to: "users#confirmation"
   #Ruta para verificacion de de redes sociales.
   get "/login", to: "users#emailverification"
+  
   get "/pages", to: "articles#pages"
   
 

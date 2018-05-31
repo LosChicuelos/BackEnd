@@ -38,6 +38,8 @@ class Article < ApplicationRecord
   # validates :inventory, presence: true, numericality: true
   # validates :price, presence: true, numericality: true
   
+  #Atributo no persistente en la base de datos
+  #attr_accessor :score_article
 
   scope :paginatedef, -> (page,page_size){
       Article.paginate(:page => page, :per_page => page_size)
@@ -114,6 +116,7 @@ class Article < ApplicationRecord
     end
     }
   #Para obtener los artículos entre un rango de fechas, solo se necesita anidar los 2 queries anteriores.
+  
   scope :belongsuseridpages, ->(param,page_size){ 
     if param != nil
       joins(:user).where("users.id = ?",param).length/(page_size.to_d)
@@ -121,6 +124,7 @@ class Article < ApplicationRecord
       all
     end
     }
+    
   #Este query nos devuelve los artículos de un usuario especifico, realizando la búsqueda por id de usuario.
   scope :belongsuserid, ->(param){ 
     if param != nil
@@ -145,12 +149,24 @@ class Article < ApplicationRecord
   }
   
   #Este query nos devuelve la calificación promedio como vendedor, del vendedor del articulo, realizando la busqueda por id de articulo.
+  def self.article_averange_score(param)
+    newArticles = self.all
+    newArticles.each do |a|
+      a.score_article = User.seller_averange_score(a.user_id)
+      #puts a.score_article
+      a.save
+      #newRelation = User.new(a)
+    end
+    return newArticles.where("articles.score_article >= ?",param)
+  end
+  
+  #Este query nos devuelve la calificación promedio como vendedor, del vendedor del articulo, realizando la busqueda por id de articulo.
   scope :seller_averange_score, -> (param) { 
-      User.seller_averange_score(Article.find(param).user_id)
+      User.seller_averange_score(self.find(param).user_id)
   }
   
   #Este query nos devuelve el id de usuario del vendedor, lo busca por id del articulo.
-  scope :id_user_seller, -> (param) { Article.find(param).user_id}
+  scope :id_user_seller, -> (param) { self.find(param).user_id}
   
   #Este query nos agrupa por mes.
   scope :group_month, -> { group('strftime("%m", articles.created_at)')}
