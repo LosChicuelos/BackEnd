@@ -81,9 +81,8 @@
 #                          GET    /articles/user/:iduser(.:format)        pdfs#show {:format=>/pdf/}
 #                          GET    /statistics/:iduser(.:format)           statistics#show {:format=>/pdf/}
 #                          GET    /statistics/new/:idstatistics(.:format) statistics#show_all {:format=>/pdf/}
-#                          GET    /confirmation/:iduser(.:format)         users#confirmation
-#                          GET    /login/:email(.:format)                 users#emailverification
-#                          GET    /confirmation/:iduser(.:format)         statistics#show_all {:format=>/pdf/}
+#             confirmation GET    /confirmation(.:format)                 users#confirmation
+#                    login GET    /login(.:format)                        users#emailverification
 #                    pages GET    /pages(.:format)                        articles#pages
 #                 sessions GET    /sessions(.:format)                     sessions#index
 #                          POST   /sessions(.:format)                     sessions#create

@@ -8,7 +8,7 @@
 
 require 'faker'
 include Faker
-
+=begin
 def chooseTypeUser()
   typeuser = ''
   number = rand(8)+1
@@ -22,16 +22,7 @@ def chooseTypeUser()
   end
 end
 
-def confirm()
-  confirm = ''
-  number = rand(2)+1
-  case number
-  when 1
-	confirm = 'NO'
-  else
-  	confirm = 'SI'
-  end
-end
+
 
 Alliance.destroy_all
 Photo.destroy_all
@@ -45,7 +36,22 @@ User.destroy_all
 
 Classification.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="classifications"')
 Article.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="articles"')
+=end
+Sale.destroy_all
+Alliance.destroy_all
+Message.destroy_all
 Sale.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="sales"')
+def confirm()
+  confirm = ''
+  number = rand(2)+1
+  case number
+  when 1
+	confirm = 'NO'
+  else
+  	confirm = 'SI'
+  end
+end
+=begin
 User.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="users"')
 
 User.create(
@@ -108,6 +114,7 @@ end
     )
 end
 
+
 20.times do 
     Question.create(
         question: Faker::Lorem.paragraph,
@@ -117,38 +124,38 @@ end
         article_id: Faker::Number.between(1, 11)
     )
 end
-
-20.times do 
+=end
+1000.times do 
     Alliance.create(
         commentary: Faker::Lorem.paragraph,
         confirm: confirm(),
-        approval_id: Faker::Number.between(1, 11),
-        applicant_id: Faker::Number.between(1, 11)
+        approval_id: Faker::Number.between(1, 14),
+        applicant_id: Faker::Number.between(1, 14)
     )
 end
 
-30.times do 
+1000.times do 
     Message.create(
         topic: "Mensaje urgente",
         content: Faker::Lorem.paragraph,
         date: Time.now,
-        sender_id: Faker::Number.between(1, 11),
-        receiver_id: Faker::Number.between(1, 11)
+        sender_id: Faker::Number.between(1, 14),
+        receiver_id: Faker::Number.between(1, 14)
     )
 end
 
-200.times do 
+1000.times do 
     Sale.create(
         date: Faker::Date.between(1.year.ago, Date.today),
         created_at: Faker::Date.between(1.year.ago, Date.today),
         quantity: Number.between(1, 11),
         amount: Faker::Number.between(10000, 100000),
-        seller_id: Faker::Number.between(1, 11),
-        buyer_id: Faker::Number.between(1, 11),
+        seller_id: Faker::Number.between(1, 13),
+        buyer_id: Faker::Number.between(1, 13),
         article_id: Faker::Number.between(1, 10)
     )
 end
-
+=begin
 100.times do 
     Score.create(
         commentary: Faker::Lorem.paragraph,
