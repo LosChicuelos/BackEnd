@@ -150,14 +150,18 @@ class Article < ApplicationRecord
   
   #Este query nos devuelve la calificación promedio como vendedor, del vendedor del articulo, realizando la busqueda por id de articulo.
   def self.article_averange_score(param)
-    newArticles = self.all
-    newArticles.each do |a|
-      a.score_article = User.seller_averange_score(a.user_id)
-      #puts a.score_article
-      a.save
-      #newRelation = User.new(a)
+    if param != nil
+      newArticles = self.all
+      newArticles.each do |a|
+        a.score_article = User.seller_averange_score(a.user_id)
+        #puts a.score_article
+        a.save
+        #newRelation = User.new(a)
+      end
+      return newArticles.where("articles.score_article >= ?",param)
+    else
+      return self.all
     end
-    return newArticles.where("articles.score_article >= ?",param)
   end
   
   #Este query nos devuelve la calificación promedio como vendedor, del vendedor del articulo, realizando la busqueda por id de articulo.
