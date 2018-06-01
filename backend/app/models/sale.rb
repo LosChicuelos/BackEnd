@@ -97,6 +97,15 @@ class Sale < ApplicationRecord
       all
     end
     }
+  
+  #Este query nos regresa las ventas en las que ha estado relacionado un articulo
+  scope :sales_per_article, ->(param) { 
+    if param != nil
+      where("article_id = ?", param)
+    else
+      all
+    end
+    }
     
   #Este query nos devuelve las ventas que se han realizado de un articulo especifico, lo busca por id de articulo.
   scope :sales_per_article, ->(param) { 

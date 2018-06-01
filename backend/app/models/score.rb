@@ -27,7 +27,7 @@ class Score < ApplicationRecord
   validates :score, presence: true, numericality: { only_integer: true }, length: { maximum: 1 }
   
   scope :paginatedef, -> (param){
-      Score.paginate(:page => param, :per_page => 6)
+      Score.paginate(:page => param, :per_page => 1000)
   }
 
   #///////// Querries /////////
