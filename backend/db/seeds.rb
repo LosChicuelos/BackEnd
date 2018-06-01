@@ -37,9 +37,9 @@ User.destroy_all
 Classification.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="classifications"')
 Article.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="articles"')
 =end
-Sale.destroy_all
-Alliance.destroy_all
-Message.destroy_all
+# Sale.destroy_all
+# Alliance.destroy_all
+# Message.destroy_all
 Sale.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="sales"')
 def confirm()
   confirm = ''
@@ -125,33 +125,48 @@ end
     )
 end
 =end
-1000.times do 
-    Alliance.create(
-        commentary: Faker::Lorem.paragraph,
-        confirm: confirm(),
-        approval_id: Faker::Number.between(1, 14),
-        applicant_id: Faker::Number.between(1, 14)
-    )
-end
+# 10.times do 
+#     Alliance.create(
+#         commentary: Faker::Lorem.paragraph,
+#         confirm: confirm(),
+#         approval_id: Faker::Number.between(1, 32),
+#         applicant_id: Faker::Number.between(33, 33)
+#     )
+# end
 
-1000.times do 
-    Message.create(
-        topic: "Mensaje urgente",
-        content: Faker::Lorem.paragraph,
-        date: Time.now,
-        sender_id: Faker::Number.between(1, 14),
-        receiver_id: Faker::Number.between(1, 14)
-    )
-end
+# 10.times do 
+#     Message.create(
+#         topic: "Mensaje urgente",
+#         content: Faker::Lorem.paragraph,
+#         date: Time.now,
+#         sender_id: Faker::Number.between(1, 32),
+#         receiver_id: Faker::Number.between(33, 33)
+#     )
+# end
 
-1000.times do 
+# 3+4+1+3+1+3+5
+
+
+20.times do 
     Sale.create(
         date: Faker::Date.between(1.year.ago, Date.today),
         created_at: Faker::Date.between(1.year.ago, Date.today),
         quantity: Number.between(1, 11),
         amount: Faker::Number.between(10000, 100000),
-        seller_id: Faker::Number.between(1, 13),
+        seller_id: Faker::Number.between(33, 33),
         buyer_id: Faker::Number.between(1, 13),
+        article_id: Faker::Number.between(1, 10)
+    )
+end
+
+20.times do 
+    Sale.create(
+        date: Faker::Date.between(1.year.ago, Date.today),
+        created_at: Faker::Date.between(1.year.ago, Date.today),
+        quantity: Number.between(1, 11),
+        amount: Faker::Number.between(10000, 100000),
+        seller_id: Faker::Number.between(1, 32),
+        buyer_id: Faker::Number.between(33, 33),
         article_id: Faker::Number.between(1, 10)
     )
 end

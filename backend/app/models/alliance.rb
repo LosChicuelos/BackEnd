@@ -48,7 +48,7 @@ class Alliance < ApplicationRecord
   
   scope :belongsuser, ->(id_param) { where("(approval_id = ? or applicant_id = ?) and confirm = 'SI'", id_param,id_param)}
   scope :belongsuserpending, ->(id_param) { where("approval_id  = ? and confirm = 'PENDIENTE'",id_param)}
-  scope :belongsuseronhold, ->(id_param) { where("applicant_id = ? and confirm = 'PENDIENTE'",id_param)}
+  scope :belongsuseronhold, ->(id_param) { where("applicant_id = ? and confirm = 'NO'",id_param)}
 
   #Se deja en este comentaro multiple los querries anteriores
   def self.withsale
