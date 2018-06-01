@@ -27,7 +27,7 @@ class Score < ApplicationRecord
   validates :score, presence: true, numericality: { only_integer: true }, length: { maximum: 1 }
   
   scope :paginatedef, -> (param){
-      Score.paginate(:page => param, :per_page => 6)
+      Score.paginate(:page => param, :per_page => 1000)
   }
 
   #///////// Querries /////////
@@ -37,6 +37,8 @@ class Score < ApplicationRecord
   scope :higherthan, -> (param) { where("score > ?",param)}
   
   scope :counthigherthan, -> (param) { where("score > ?",param).count} 
+  
+  
   
   #Este query nos devuelve las calificaciones creadas antes de una fecha.
   scope :created_before, ->(param) { 

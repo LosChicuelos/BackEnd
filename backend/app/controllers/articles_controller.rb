@@ -15,20 +15,24 @@ class ArticlesController < ApplicationController
     @articles = Article.belongsuseridpages(params[:user_id], params[:page_size])
     render json: @articles
   end
+
   def pages
     @pages = Article.pages(params[:page_size])
     render json: @pages
   end
-  #////////////////////////////////////////////////////////////////////////
-  
+
   def filter
     
     #@articles = Article.higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).created_before(params[:start_date]).created_after(params[:ending_date]).in_the_name(params[:name])
-    @articles = Article.higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).in_the_name(params[:name]).article_averange_score(params[:qualification])
+    @articles = Article.higher_price_than(params[:max_price]).lower_price_than(params[:min_price]).in_the_name(params[:name]).articles_by_score(params[:qualification]).paginatedef(params[:page],params[:page_size])
     
     render json: @articles
   end
 
+  def article_score
+    @article = Article.article_average_score(params[:product])
+    render json: @article
+end
  # GET /articles/:id
   def show
     @article = Article.find(params[:id])

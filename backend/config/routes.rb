@@ -74,6 +74,7 @@
 #               photos_new POST   /photos/new(.:format)                   photos#new
 #              belongsuser GET    /belongsuser(.:format)                  articles#belongsuser
 #         belongsuserpages GET    /belongsuserpages(.:format)             articles#belongsuserpages
+#            article_score GET    /article_score(.:format)                articles#article_score
 #      messagesbelongsuser GET    /messagesbelongsuser(.:format)          messages#belongsuser
 #     alliancesbelongsuser GET    /alliancesbelongsuser(.:format)         alliances#belongsuser
 #         salesbelongsuser GET    /salesbelongsuser(.:format)             sales#belongsuser
@@ -109,6 +110,7 @@ Rails.application.routes.draw do
 
   get '/belongsuser', to: "articles#belongsuser"
   get '/belongsuserpages', to: "articles#belongsuserpages"
+  get '/article_score', to: "articles#article_score"
   get '/messagesbelongsuser', to: "messages#belongsuser"
   get '/alliancesbelongsuser', to: "alliances#belongsuser"
   get '/salesbelongsuser', to: "sales#belongsuser"

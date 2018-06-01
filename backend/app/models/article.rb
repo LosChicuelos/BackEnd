@@ -59,7 +59,7 @@ class Article < ApplicationRecord
   
   #Este query nos devuelve los productos que tienen un precio igual o mayor que el parámetro de entrada.
   scope :higher_price_than, ->(param) { 
-    if param != nil
+    if param != ""
       where("price <= ?", param)
     else
       all
@@ -67,7 +67,7 @@ class Article < ApplicationRecord
     }
   #Este query nos devuelve los productos que tienen un precio igual o menor que el parámetro de entrada.
   scope :lower_price_than, ->(param) { 
-    if param != nil
+    if param != ""
       where("price >= ?", param)
     else
       all
@@ -92,7 +92,7 @@ class Article < ApplicationRecord
   
   #Este query busca un articulo por nombre o parte del monbre.
   scope :in_the_name, ->(param) { 
-    if param != nil
+    if param != ""
       where("articles.name LIKE :query", query: "%#{param}%")
     else
       all
@@ -149,16 +149,31 @@ class Article < ApplicationRecord
   }
   
   #Este query nos devuelve la calificación promedio como vendedor, del vendedor del articulo, realizando la busqueda por id de articulo.
-  def self.article_averange_score(param)
+  def self.articles_by_score(param)
+    if param != nil
     newArticles = self.all
     newArticles.each do |a|
-      a.score_article = User.seller_averange_score(a.user_id)
+      a.score_article = Article.article_average_score(a.id)
       #puts a.score_article
       a.save
       #newRelation = User.new(a)
+      end
+      return newArticles.where("articles.score_article >= ?",param)
+    else
+      return self.all
     end
-    return newArticles.where("articles.score_article >= ?",param)
   end
+  
+  scope :article_q, -> (param) {
+    Sale.sales_per_article(param).joins("INNER JOIN scores ON scores.sale_id = sales.id").average("scores.score")
+  }
+
+  scope :article_average_score, -> (param){
+    scores = Score.joins("INNER JOIN sales ON sales.id = scores.sale_id").where("sales.article_id= ?",param)
+   scores.sum(:score)/scores.count(:all).to_f
+    
+  }
+  
   
   #Este query nos devuelve la calificación promedio como vendedor, del vendedor del articulo, realizando la busqueda por id de articulo.
   scope :seller_averange_score, -> (param) { 

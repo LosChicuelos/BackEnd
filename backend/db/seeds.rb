@@ -37,9 +37,16 @@ User.destroy_all
 Classification.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="classifications"')
 Article.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="articles"')
 =end
+<<<<<<< HEAD
 # Sale.destroy_all
 # Alliance.destroy_all
 # Message.destroy_all
+=======
+=begin
+Sale.destroy_all
+Alliance.destroy_all
+Message.destroy_all
+>>>>>>> 1f8bc9c63413fe6caf54bee1b6f640c173649ccd
 Sale.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="sales"')
 def confirm()
   confirm = ''
@@ -51,7 +58,6 @@ def confirm()
   	confirm = 'SI'
   end
 end
-=begin
 User.connection.execute('UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME="users"')
 
 User.create(
@@ -125,6 +131,7 @@ end
     )
 end
 =end
+<<<<<<< HEAD
 # 10.times do 
 #     Alliance.create(
 #         commentary: Faker::Lorem.paragraph,
@@ -145,6 +152,17 @@ end
 # end
 
 # 3+4+1+3+1+3+5
+=======
+=begin
+1000.times do 
+    Alliance.create(
+        commentary: Faker::Lorem.paragraph,
+        confirm: confirm(),
+        approval_id: Faker::Number.between(1, 14),
+        applicant_id: Faker::Number.between(1, 14)
+    )
+end
+>>>>>>> 1f8bc9c63413fe6caf54bee1b6f640c173649ccd
 
 
 20.times do 
@@ -158,24 +176,36 @@ end
         article_id: Faker::Number.between(1, 10)
     )
 end
+<<<<<<< HEAD
 
 20.times do 
+=======
+=end
+=begin
+10000.times do 
+>>>>>>> 1f8bc9c63413fe6caf54bee1b6f640c173649ccd
     Sale.create(
         date: Faker::Date.between(1.year.ago, Date.today),
         created_at: Faker::Date.between(1.year.ago, Date.today),
         quantity: Number.between(1, 11),
         amount: Faker::Number.between(10000, 100000),
+<<<<<<< HEAD
         seller_id: Faker::Number.between(1, 32),
         buyer_id: Faker::Number.between(33, 33),
         article_id: Faker::Number.between(1, 10)
+=======
+        seller_id: Faker::Number.between(1, 13),
+        buyer_id: Faker::Number.between(1, 13),
+        article_id: Faker::Number.between(1, 2000)
+>>>>>>> 1f8bc9c63413fe6caf54bee1b6f640c173649ccd
     )
 end
-=begin
-100.times do 
+
+1000000.times do 
     Score.create(
         commentary: Faker::Lorem.paragraph,
         score: Faker::Number.between(0, 5),
-        sale_id: Faker::Number.between(1, 30),
+        sale_id: Faker::Number.between(1, 10000),
         qualified_id: Faker::Number.between(1, 11),
         qualifier_id: Faker::Number.between(1, 11)
     )
