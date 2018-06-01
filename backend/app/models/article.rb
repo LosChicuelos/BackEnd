@@ -150,14 +150,18 @@ class Article < ApplicationRecord
   
   #Este query nos devuelve la calificación promedio como vendedor, del vendedor del articulo, realizando la busqueda por id de articulo.
   def self.articles_by_score(param)
+    if param != nil
     newArticles = self.all
     newArticles.each do |a|
       a.score_article = Article.article_average_score(a.id)
       #puts a.score_article
       a.save
       #newRelation = User.new(a)
+      end
+      return newArticles.where("articles.score_article >= ?",param)
+    else
+      return self.all
     end
-    return newArticles.where("articles.score_article >= ?",param)
   end
   
   scope :article_q, -> (param) {

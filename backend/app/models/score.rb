@@ -38,6 +38,8 @@ class Score < ApplicationRecord
   
   scope :counthigherthan, -> (param) { where("score > ?",param).count} 
   
+  
+  
   #Este query nos devuelve las calificaciones creadas antes de una fecha.
   scope :created_before, ->(param) { 
     if param != nil
