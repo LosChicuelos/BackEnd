@@ -131,7 +131,6 @@ end
     )
 end
 =end
-<<<<<<< HEAD
 # 10.times do 
 #     Alliance.create(
 #         commentary: Faker::Lorem.paragraph,
@@ -152,17 +151,6 @@ end
 # end
 
 # 3+4+1+3+1+3+5
-=======
-=begin
-1000.times do 
-    Alliance.create(
-        commentary: Faker::Lorem.paragraph,
-        confirm: confirm(),
-        approval_id: Faker::Number.between(1, 14),
-        applicant_id: Faker::Number.between(1, 14)
-    )
-end
->>>>>>> 1f8bc9c63413fe6caf54bee1b6f640c173649ccd
 
 
 20.times do 
