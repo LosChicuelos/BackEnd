@@ -91,7 +91,7 @@
 #                          DELETE /sessions/:id(.:format)                 sessions#destroy
 
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, defaults: { format: :json }
   get 'home/index'
 
   resources :scores
@@ -124,6 +124,8 @@ Rails.application.routes.draw do
   get "/confirmation", to: "users#confirmation"
   #Ruta para verificacion de de redes sociales.
   get "/login", to: "users#emailverification"
+
+  get "/sendemail", to: "users#sendemail"
   
   get "/pages", to: "articles#pages"
   

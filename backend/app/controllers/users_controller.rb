@@ -17,9 +17,10 @@ class UsersController < ApplicationController
 
   # POST /usuarios
   def create
-    
+    puts "entrada al controlado"
     @user = User.new(user_params)
     @user.confirmation = false
+    
 
       if @user.save
         
@@ -52,7 +53,9 @@ class UsersController < ApplicationController
 
 # Con este metodo recibimos la confirmacion del email del usuario.
   def confirmation
-    @user = User.find_by(params[:iduser])
+    puts "------------!!!!!!!!!!!!!------------------ " + params[:iduser]
+    @user = User.find_by(id: params[:iduser])
+    puts @user
     @user.confirmation = true
     
     if @user.save
@@ -80,7 +83,25 @@ class UsersController < ApplicationController
       render json: { id: nil, rta: @user}
     end
   end
-  
+
+  def sendemail
+    @user = User.find_by(email: params[:email])
+    puts @user
+    @user.confirmation = false   
+
+    if @user.save
+      
+      #Con la siguiente linea se envia un correo de confirmacion de email, al nuevo usuario.
+      #WelcomeUserMailer.delay.notify(@user)  #later(wait: 30.seconds)
+      WelcomeUserMailer.confirmation(@user).deliver_now
+      
+      render json: @user, status: :created
+
+    else
+
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -89,6 +110,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :lastname, :typeuser, :iddocument, :typedocument, :email, :phone, :latitude, :langitude, :password, :password_confirmation)
+      params.require(:user).permit(:name, :lastname, :typeuser, :iddocument, :typedocument, :email, :phone, :latitude, :langitude, :password, :confirmation ,:password_confirmation)
     end
 end

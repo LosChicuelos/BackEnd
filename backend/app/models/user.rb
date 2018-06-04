@@ -121,4 +121,6 @@ class User < ApplicationRecord
         self.id_user(param).present?
     end
 
+
+
 end

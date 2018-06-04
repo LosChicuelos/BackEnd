@@ -50,7 +50,11 @@ end
 
   # POST /articles
   def create
-    @article = Article.new(article_params)  
+    temp = article_params
+    # temp.classification = Integer(article_params.classification)
+    @article = Article.new(article_params)
+    
+    
     
     if @article.save
     else

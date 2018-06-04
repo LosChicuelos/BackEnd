@@ -24,5 +24,5 @@
 #
 
 class ArticleSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :price, :inventory, :user_id, :classification_id
+  attributes :id, :name, :description, :price, :inventory, :user_id, :classification_id, :picture_file_name
 end
