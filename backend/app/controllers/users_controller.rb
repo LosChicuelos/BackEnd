@@ -87,20 +87,22 @@ class UsersController < ApplicationController
   #funcion para asignar si la variable que define si las estadisticas son o no publicas
   def pullpublicstatus
     @user = User.find_by(id: params[:iduser])
-    if params[:statusvalue] == 0
-      @user.public_status = False
+    if params[:statusvalue] == "1"
+      @user.public_status = true
     else
-      @user.public_status = True
+      @user.public_status = false
     end
+    @user.save
   end
   
   #funcion para obtener la variable que define si las estadisticas son o no publicas
   def pushpublicstatus
     @user = User.find_by(id: params[:iduser])
-    if @user.public_status == True
+    if @user.public_status != true
+      @user.public_status = false
+      @user.save
       render json: @user.public_status
     else
-      @user.public_status = False
       render json: @user.public_status
     end
   end
