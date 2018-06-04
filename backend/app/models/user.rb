@@ -121,6 +121,25 @@ class User < ApplicationRecord
         self.id_user(param).present?
     end
     
+    #Este query nos devuelve los ususarios con una calificación promedio como vendedor mayor o igual al parametro de entrada.
+    def self.users_by_score(param)
+    if param != nil
+      if param != 0
+        newUsers = self.all
+        newUsers.each do |a|
+          a.score = User.seller_averange_score(a.id)
+          #puts a.score_article
+          a.save
+          end
+          return newUsers.where("users.score >= ?",param)
+      else
+        return self.all
+      end
+    else
+      return self.all
+    end
+    end
+  
     #Este query nos devuelve la cantidad de articulos de un usuario.
     #!!!!!!!! Revisar, puede estar fallando !!!!!!!!!!
     def self.count_articles(param)

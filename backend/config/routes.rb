@@ -86,6 +86,8 @@
 #                    login GET    /login(.:format)                        users#emailverification
 #                sendemail GET    /sendemail(.:format)                    users#sendemail
 #                    pages GET    /pages(.:format)                        articles#pages
+#                          GET    /pullpublicstatus/:iduser(.:format)     users#pullpublicstatus
+#                          GET    /pushpublicstatus/:iduser(.:format)     users#pushpublicstatus
 #                 sessions GET    /sessions(.:format)                     sessions#index
 #                          POST   /sessions(.:format)                     sessions#create
 #                  session GET    /sessions/:id(.:format)                 sessions#show

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180604133621) do
+ActiveRecord::Schema.define(version: 20180604215211) do
 
   create_table "alliances", force: :cascade do |t|
     t.text "commentary"
@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 20180604133621) do
     t.boolean "confirmation"
     t.boolean "public"
     t.boolean "public_status"
+    t.decimal "score"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
