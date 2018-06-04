@@ -120,6 +120,12 @@ class User < ApplicationRecord
     def self.email_verification(param)
         self.id_user(param).present?
     end
+    
+    #Este query nos devuelve la cantidad de articulos de un usuario.
+    #!!!!!!!! Revisar, puede estar fallando !!!!!!!!!!
+    def self.count_articles(param)
+        self.joins("INNER JOIN articles ON articles.id = users.id"). where("users.id == ?", param).count
+    end
 
 
 

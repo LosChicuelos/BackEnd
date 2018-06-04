@@ -1,21 +1,21 @@
 # == Route Map
 #
 #                   Prefix Verb   URI Pattern                             Controller#Action
-#         new_user_session GET    /users/sign_in(.:format)                devise/sessions#new
-#             user_session POST   /users/sign_in(.:format)                devise/sessions#create
-#     destroy_user_session DELETE /users/sign_out(.:format)               devise/sessions#destroy
-#        new_user_password GET    /users/password/new(.:format)           devise/passwords#new
-#       edit_user_password GET    /users/password/edit(.:format)          devise/passwords#edit
-#            user_password PATCH  /users/password(.:format)               devise/passwords#update
-#                          PUT    /users/password(.:format)               devise/passwords#update
-#                          POST   /users/password(.:format)               devise/passwords#create
-# cancel_user_registration GET    /users/cancel(.:format)                 devise/registrations#cancel
-#    new_user_registration GET    /users/sign_up(.:format)                devise/registrations#new
-#   edit_user_registration GET    /users/edit(.:format)                   devise/registrations#edit
-#        user_registration PATCH  /users(.:format)                        devise/registrations#update
-#                          PUT    /users(.:format)                        devise/registrations#update
-#                          DELETE /users(.:format)                        devise/registrations#destroy
-#                          POST   /users(.:format)                        devise/registrations#create
+#         new_user_session GET    /users/sign_in(.:format)                devise/sessions#new {:format=>:json}
+#             user_session POST   /users/sign_in(.:format)                devise/sessions#create {:format=>:json}
+#     destroy_user_session DELETE /users/sign_out(.:format)               devise/sessions#destroy {:format=>:json}
+#        new_user_password GET    /users/password/new(.:format)           devise/passwords#new {:format=>:json}
+#       edit_user_password GET    /users/password/edit(.:format)          devise/passwords#edit {:format=>:json}
+#            user_password PATCH  /users/password(.:format)               devise/passwords#update {:format=>:json}
+#                          PUT    /users/password(.:format)               devise/passwords#update {:format=>:json}
+#                          POST   /users/password(.:format)               devise/passwords#create {:format=>:json}
+# cancel_user_registration GET    /users/cancel(.:format)                 devise/registrations#cancel {:format=>:json}
+#    new_user_registration GET    /users/sign_up(.:format)                devise/registrations#new {:format=>:json}
+#   edit_user_registration GET    /users/edit(.:format)                   devise/registrations#edit {:format=>:json}
+#        user_registration PATCH  /users(.:format)                        devise/registrations#update {:format=>:json}
+#                          PUT    /users(.:format)                        devise/registrations#update {:format=>:json}
+#                          DELETE /users(.:format)                        devise/registrations#destroy {:format=>:json}
+#                          POST   /users(.:format)                        devise/registrations#create {:format=>:json}
 #               home_index GET    /home/index(.:format)                   home#index
 #                   scores GET    /scores(.:format)                       scores#index
 #                          POST   /scores(.:format)                       scores#create
@@ -84,6 +84,7 @@
 #                          GET    /statistics/new/:idstatistics(.:format) statistics#show_all {:format=>/pdf/}
 #             confirmation GET    /confirmation(.:format)                 users#confirmation
 #                    login GET    /login(.:format)                        users#emailverification
+#                sendemail GET    /sendemail(.:format)                    users#sendemail
 #                    pages GET    /pages(.:format)                        articles#pages
 #                 sessions GET    /sessions(.:format)                     sessions#index
 #                          POST   /sessions(.:format)                     sessions#create
@@ -128,6 +129,11 @@ Rails.application.routes.draw do
   get "/sendemail", to: "users#sendemail"
   
   get "/pages", to: "articles#pages"
+  
+  #Ruta para asignar si la variable que define si las estadisticas son o no publicas
+  get "/pullpublicstatus/:iduser", to: "users#pullpublicstatus"
+  #Ruta para obtener la variable que define si las estadisticas son o no publicas
+  get "/pushpublicstatus/:iduser", to: "users#pushpublicstatus"
   
 
   resources :sessions, only: [:create, :destroy, :show, :index]

@@ -83,11 +83,33 @@ class UsersController < ApplicationController
       render json: { id: nil, rta: @user}
     end
   end
-
+  
+  #funcion para asignar si la variable que define si las estadisticas son o no publicas
+  def pullpublicstatus
+    @user = User.find_by(id: params[:iduser])
+    if params[:statusvalue] == 0
+      @user.public_status = False
+    else
+      @user.public_status = True
+    end
+  end
+  
+  #funcion para obtener la variable que define si las estadisticas son o no publicas
+  def pushpublicstatus
+    @user = User.find_by(id: params[:iduser])
+    if @user.public_status == True
+      render json: @user.public_status
+    else
+      @user.public_status = False
+      render json: @user.public_status
+    end
+  end
+  
   def sendemail
     @user = User.find_by(email: params[:email])
-    puts @user
-    @user.confirmation = false   
+    #puts @user
+    @user.confirmation = false  
+    @user.public_status = false
 
     if @user.save
       
